@@ -18,11 +18,26 @@ public class Membresia {
     private Date fechaFin;
     private double costo;
     private boolean estado;
-
-    @Override
-    public String toString() {
-        return idMembresia + " "+Socio+" "+cantidadPases+" "+ fechaInicio+" "+fechaFin+" "+costo+" "+estado;
+ public Membresia(int idMembresia, Socio Socio, int cantidadPases, Date fechaInicio, Date fechaFin, double costo, boolean estado) {
+        this.idMembresia = idMembresia;
+        this.Socio = Socio;
+        this.cantidadPases = cantidadPases;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.costo = costo;
+        this.estado = estado;
     }
+     public Membresia(Socio Socio, int cantidadPases, Date fechaInicio, Date fechaFin, double costo, boolean estado) {
+        this.Socio = Socio;
+        this.cantidadPases = cantidadPases;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.costo = costo;
+        this.estado = estado;
+    }
+      public Membresia() {
+    }
+
 
     public int getIdMembresia() {
         return idMembresia;
@@ -80,27 +95,8 @@ public class Membresia {
         this.estado = estado;
     }
 
-    public Membresia() {
+     @Override
+    public String toString() {
+        return idMembresia + " "+Socio+" "+cantidadPases+" "+ fechaInicio+" "+fechaFin+" "+costo+" "+estado;
     }
-
-    public Membresia(Socio Socio, int cantidadPases, Date fechaInicio, Date fechaFin, double costo, boolean estado) {
-        this.Socio = Socio;
-        this.cantidadPases = cantidadPases;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.costo = costo;
-        this.estado = estado;
-    }
-
-    public Membresia(int idMembresia, Socio Socio, int cantidadPases, Date fechaInicio, Date fechaFin, double costo, boolean estado) {
-        this.idMembresia = idMembresia;
-        this.Socio = Socio;
-        this.cantidadPases = cantidadPases;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.costo = costo;
-        this.estado = estado;
-    }
-    
-    
 }
