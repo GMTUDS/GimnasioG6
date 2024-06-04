@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,14 +12,16 @@ import java.util.Date;
  * @author Rebeca
  */
 public class Membresia {
+
     private int idMembresia;
     private Socio Socio;
-    private  int cantidadPases;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private int cantidadPases;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private double costo;
     private boolean estado;
- public Membresia(int idMembresia, Socio Socio, int cantidadPases, Date fechaInicio, Date fechaFin, double costo, boolean estado) {
+
+    public Membresia(int idMembresia, Socio Socio, int cantidadPases, LocalDate fechaInicio, LocalDate fechaFin, double costo, boolean estado) {
         this.idMembresia = idMembresia;
         this.Socio = Socio;
         this.cantidadPases = cantidadPases;
@@ -27,7 +30,8 @@ public class Membresia {
         this.costo = costo;
         this.estado = estado;
     }
-     public Membresia(Socio Socio, int cantidadPases, Date fechaInicio, Date fechaFin, double costo, boolean estado) {
+
+    public Membresia(Socio Socio, int cantidadPases, LocalDate fechaInicio, LocalDate fechaFin, double costo, boolean estado) {
         this.Socio = Socio;
         this.cantidadPases = cantidadPases;
         this.fechaInicio = fechaInicio;
@@ -35,9 +39,9 @@ public class Membresia {
         this.costo = costo;
         this.estado = estado;
     }
-      public Membresia() {
-    }
 
+    public Membresia() {
+    }
 
     public int getIdMembresia() {
         return idMembresia;
@@ -63,19 +67,19 @@ public class Membresia {
         this.cantidadPases = cantidadPases;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -95,8 +99,8 @@ public class Membresia {
         this.estado = estado;
     }
 
-     @Override
+    @Override
     public String toString() {
-        return idMembresia + " "+Socio+" "+cantidadPases+" "+ fechaInicio+" "+fechaFin+" "+costo+" "+estado;
+        return idMembresia + " " + Socio + " " + cantidadPases + " " + fechaInicio + " " + fechaFin + " " + costo + " " + estado;
     }
 }
