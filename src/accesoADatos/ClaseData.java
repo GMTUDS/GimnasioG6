@@ -18,12 +18,14 @@ public class ClaseData {
     }
     
     public void agregarClase(Clase clase, Entrenador entrenador) {
-        String sql = "INSERT INTO clase (nombre, horario, idEntrenador) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO clase (nombre, horario, idEntrenador, capacidad, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, clase.getNombre());
             ps.setTime(2, Time.valueOf(clase.getHorario()));
             ps.setInt(3, entrenador.getId());
+            ps.setInt(4, clase.getCapacidad());
+            ps.setBoolean(5, clase.isEstado());
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
@@ -46,12 +48,14 @@ public class ClaseData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Clase clase = new Clase();
-                clase.setIdClase(rs.getInt("id"));
+                clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                // Aquí puedes agregar la lógica para obtener el entrenador de la clase si es necesario
+                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
                 clases.add(clase);
-            }
+           }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al listar las clases");
@@ -69,10 +73,12 @@ public class ClaseData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 clase = new Clase();
-                clase.setIdClase(rs.getInt("id"));
+                clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                // Aquí puedes agregar la lógica para obtener el entrenador de la clase si es necesario
+                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
             }
             ps.close();
         } catch (SQLException ex) {
@@ -89,12 +95,15 @@ public class ClaseData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idEntrenador);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+             if (rs.next()) {
                 clase = new Clase();
-                clase.setIdClase(rs.getInt("id"));
+                clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                // Aquí puedes agregar la lógica para obtener el entrenador de la clase si es necesario
+                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
+                
             }
             ps.close();
         } catch (SQLException ex) {
@@ -113,10 +122,12 @@ public class ClaseData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 clase = new Clase();
-                clase.setIdClase(rs.getInt("id"));
+                clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                // Aquí puedes agregar la lógica para obtener el entrenador de la clase si es necesario
+                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
             }
             ps.close();
         } catch (SQLException ex) {
@@ -127,7 +138,7 @@ public class ClaseData {
     }
 
     public void inscribirSocio(int idSocio, String nombreClase) {
-        String sql = "INSERT INTO socio_clase (idSocio, idClase) SELECT ?, id FROM clase WHERE nombre = ?";
+        String sql = "INSERT INTO asistencia (idSocio, idClase, fechaAsistencia) SELECT ?, idClase, CURDATE() FROM clase WHERE nombre = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idSocio);
@@ -136,6 +147,39 @@ public class ClaseData {
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al inscribir al socio");
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void modificarClase(Clase clase) {
+         String sql = "UPDATE clase SET nombre = ?, horario = ?, idEntrenador = ?, capacidad = ?, estado = ? WHERE idClase = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, clase.getNombre());
+            ps.setTime(2, Time.valueOf(clase.getHorario()));
+            ps.setInt(3, clase.getIdEntrenador());
+            ps.setInt(4, clase.getCapacidad());
+            ps.setBoolean(5, clase.isEstado());
+            ps.setInt(6, clase.getId());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Clase modificada");
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar la clase");
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void eliminarClase(int idClase) {
+        String sql = "DELETE FROM clase WHERE idClase = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idClase);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Clase eliminada");
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar la clase");
             System.out.println(ex.getMessage());
         }
     }
