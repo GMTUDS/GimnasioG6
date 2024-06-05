@@ -5,6 +5,7 @@
 package accesoADatos;
 
 import entidades.Membresia;
+import entidades.Socio;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,31 @@ public class MembresiaData {
     public MembresiaData() {
         conn = Conexion.getConexion();
     }
-
+   public Membresia buscarMembresiaActiva(int idSocio){
+        String sql= "SELECT * FROM  membresia WHERE estado = 1 AND idSocio = ? ";
+        SocioData socioData=new SocioData();
+        Socio socio=new Socio();
+         try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idSocio);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Membresia membresia = new Membresia();
+                membresia.setIdMembresia(rs.getInt("idMembresia"));
+                socio=socioData.buscarSocioPorId(rs.getInt("idSocio"));
+                membresia.setSocio(socio);
+                membresia.setCantidadPases(rs.getInt("cantidadPases"));
+                membresia.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                membresia.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                membresia.setCosto(rs.getDouble("costo"));
+                membresia.setEstado(rs.getBoolean("estado"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia");
+        }
+        return membresia;
+    }
     
     
     public void renovarMembresia(int idSocio, int pases, int fechaInicio) {
