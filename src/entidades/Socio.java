@@ -4,7 +4,7 @@ package entidades;
  * @author elise
  */
 public class Socio {
-    private int id;
+    private int idSocio;
     private String dni;
     private String nombre;
     private String apellido;
@@ -16,8 +16,8 @@ public class Socio {
     public Socio() {
     }
 
-    public Socio(int id, String dni, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
-        this.id = id;
+    public Socio(int idSocio, String dni, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
+        this.idSocio = idSocio;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -37,12 +37,12 @@ public class Socio {
         this.estado = estado;
     }
 
-    public int getId() {
-        return id;
+    public int getIdSocio() {
+        return idSocio;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSocio(int idSocio) {
+        this.idSocio = idSocio;
     }
 
     public String getDni() {
@@ -103,7 +103,7 @@ public class Socio {
 
     @Override
     public String toString() {
-        return "Socio{" + "id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", correo=" + correo + ", telefono=" + telefono + ", estado=" + estado + '}';
+        return "Socio{" + "idSocio=" + idSocio + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", correo=" + correo + ", telefono=" + telefono + ", estado=" + estado + '}';
     }
     
     
