@@ -80,7 +80,7 @@ public class EntrenadorData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 entrenador = new Entrenador();
-                entrenador.setIdEntrenador("idEntrenador");
+//                entrenador.setIdEntrenador("idEntrenador");
                 entrenador.setDni(rs.getInt("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
@@ -105,7 +105,7 @@ public class EntrenadorData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 entrenador = new Entrenador();
-                entrenador.setIdEntrenador("idEntrenador");
+//                entrenador.setIdEntrenador("idEntrenador");
                 entrenador.setDni(rs.getInt("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
