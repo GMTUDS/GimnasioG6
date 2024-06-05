@@ -26,12 +26,13 @@ public class MembresiaData {
         String sql= "SELECT * FROM  membresia WHERE estado = 1 AND idSocio = ? ";
         SocioData socioData=new SocioData();
         Socio socio=new Socio();
+          Membresia membresia = new Membresia();
          try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, idSocio);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Membresia membresia = new Membresia();
+              
                 membresia.setIdMembresia(rs.getInt("idMembresia"));
                 socio=socioData.buscarSocioPorId(rs.getInt("idSocio"));
                 membresia.setSocio(socio);
