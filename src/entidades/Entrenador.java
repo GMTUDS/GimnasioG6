@@ -4,7 +4,7 @@ package entidades;
 public class Entrenador {
     
     public int idEntrenador;
-    public int dni;
+    public String dni;
     public String nombre;
     public String apellido;
     public String especialidad;
@@ -13,7 +13,7 @@ public class Entrenador {
     public Entrenador() {
     }
 
-    public Entrenador(int idEntrenador, int dni, String nombre, String apellido, String especialidad, boolean estado) {
+    public Entrenador(int idEntrenador, String dni, String nombre, String apellido, String especialidad, boolean estado) {
         this.idEntrenador = idEntrenador;
         this.dni = dni;
         this.nombre = nombre;
@@ -22,7 +22,7 @@ public class Entrenador {
         this.estado = estado;
     }
 
-    public Entrenador(int dni, String nombre, String apellido, String especialidad, boolean estado) {
+    public Entrenador(String dni, String nombre, String apellido, String especialidad, boolean estado) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -38,11 +38,11 @@ public class Entrenador {
         this.idEntrenador = idEntrenador;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
