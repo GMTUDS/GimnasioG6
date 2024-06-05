@@ -51,7 +51,7 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
                 clases.add(clase);
@@ -76,7 +76,7 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
             }
@@ -100,7 +100,7 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
                 
@@ -125,7 +125,7 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
             }
@@ -157,10 +157,10 @@ public class ClaseData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, clase.getNombre());
             ps.setTime(2, Time.valueOf(clase.getHorario()));
-            ps.setInt(3, clase.getIdEntrenador());
+            ps.setInt(3, clase.getEntrenador().getIdEntrenador());
             ps.setInt(4, clase.getCapacidad());
             ps.setBoolean(5, clase.isEstado());
-            ps.setInt(6, clase.getId());
+            ps.setInt(6, clase.getIdClase());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Clase modificada");
             ps.close();
