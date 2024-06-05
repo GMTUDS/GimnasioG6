@@ -3,12 +3,12 @@ package entidades;
 
 class Entrenador {
     
-    private int idEntrenador;
-    private int dni;
-    private String nombre;
-    private String apellido;
-    private String especialidad;
-    private boolean estado;
+    public int idEntrenador;
+    public int dni;
+    public String nombre;
+    public String apellido;
+    public String especialidad;
+    public boolean estado;
 
     public Entrenador() {
     }
