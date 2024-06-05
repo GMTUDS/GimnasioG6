@@ -155,7 +155,7 @@ public class EntrenadorData {
             ps.setString(3, entrenador.getNombre());
             ps.setString(2, entrenador.getApellido());
             ps.setString(4, entrenador.getEspecialidad());
-            ps.setInt(5, entrenador.getIdAlumno());
+            ps.setInt(5, entrenador.getIdEntrenador());
             int filas = ps.executeUpdate();
             if (filas == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificó el entrenador");

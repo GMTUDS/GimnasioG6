@@ -1,7 +1,7 @@
 
 package entidades;
 
-class Entrenador {
+public class Entrenador {
     
     public int idEntrenador;
     public int dni;
