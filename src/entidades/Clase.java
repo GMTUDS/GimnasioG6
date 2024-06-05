@@ -12,8 +12,8 @@ import java.time.LocalTime;
  */
 public class Clase {
     private int idClase;
-    private String Nombre;
-    private int idEntrenador;
+    private String nombre;
+    private Entrenador entrenador;
     private LocalTime horario;
     private int capacidad;
     private boolean estado;
@@ -21,18 +21,18 @@ public class Clase {
     public Clase() {
     }
 
-    public Clase(String Nombre, int idEntrenador, LocalTime horario, int capacidad, boolean estado) {
-        this.Nombre = Nombre;
-        this.idEntrenador = idEntrenador;
+    public Clase(String nombre, Entrenador entrenador, LocalTime horario, int capacidad, boolean estado) {
+        this.nombre = nombre;
+        this.entrenador = entrenador;
         this.horario = horario;
         this.capacidad = capacidad;
         this.estado = estado;
     }
 
-    public Clase(int idClase, String Nombre, int idEntrenador, LocalTime horario, int capacidad, boolean estado) {
+    public Clase(int idClase, String nombre, Entrenador entrenador, LocalTime horario, int capacidad, boolean estado) {
         this.idClase = idClase;
-        this.Nombre = Nombre;
-        this.idEntrenador = idEntrenador;
+        this.nombre = nombre;
+        this.entrenador = entrenador;
         this.horario = horario;
         this.capacidad = capacidad;
         this.estado = estado;
@@ -47,19 +47,19 @@ public class Clase {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public int getIdEntrenador() {
-        return idEntrenador;
+    public Entrenador getEntrenador() {
+        return entrenador;
     }
 
-    public void setIdEntrenador(int idEntrenador) {
-        this.idEntrenador = idEntrenador;
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
     }
 
     public LocalTime getHorario() {
@@ -88,7 +88,10 @@ public class Clase {
 
     @Override
     public String toString() {
-        return "Clase{" + "idClase=" + idClase + ", Nombre=" + Nombre + ", idEntrenador=" + idEntrenador + ", horario=" + horario + ", capacidad=" + capacidad + ", estado=" + estado + '}';
+        return "Clase{" + "idClase=" + idClase + ", nombre=" + nombre + ", entrenador=" + entrenador + ", horario=" + horario + ", capacidad=" + capacidad + ", estado=" + estado + '}';
     }
+
+    
+    
     
 }
