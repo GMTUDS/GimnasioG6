@@ -27,7 +27,7 @@ public class EntrenadorData {
                 + "VALUES(?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, entrenador.getDni());
+            ps.setString(1, entrenador.getDni());
             ps.setString(2, entrenador.getNombre());
             ps.setString(3, entrenador.getApellido());
             ps.setString(4, entrenador.getEspecialidad());
@@ -56,7 +56,7 @@ public class EntrenadorData {
             while (rs.next()) {
                 Entrenador entrenador = new Entrenador();
                 entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
-                entrenador.setDni(rs.getInt("dni"));
+                entrenador.setDni(rs.getString("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
                 entrenador.setEspecialidad(rs.getString("especialidad"));
@@ -81,7 +81,7 @@ public class EntrenadorData {
             if (rs.next()) {
                 entrenador = new Entrenador();
                 entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
-                entrenador.setDni(rs.getInt("dni"));
+                entrenador.setDni(rs.getString("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
                 entrenador.setEstado(true);
@@ -106,7 +106,7 @@ public class EntrenadorData {
             if (rs.next()) {
                 entrenador = new Entrenador();
                 entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
-                entrenador.setDni(rs.getInt("dni"));
+                entrenador.setDni(rs.getString("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
                 entrenador.setEstado(true);
@@ -130,7 +130,7 @@ public class EntrenadorData {
             while (rs.next()) {
                 Entrenador entrenador = new Entrenador();
                 entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
-                entrenador.setDni(rs.getInt("dni"));
+                entrenador.setDni(rs.getString("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
                 entrenador.setEspecialidad(rs.getString("especialidad"));
@@ -151,7 +151,7 @@ public class EntrenadorData {
                 + "WHERE idEntrenador = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, entrenador.getDni());
+            ps.setString(1, entrenador.getDni());
             ps.setString(3, entrenador.getNombre());
             ps.setString(2, entrenador.getApellido());
             ps.setString(4, entrenador.getEspecialidad());
