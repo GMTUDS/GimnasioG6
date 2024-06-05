@@ -4,6 +4,7 @@ package accesoADatos;
  * @author elise
  */
 import entidades.Clase;
+import entidades.Entrenador;
 import java.sql.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ClaseData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, clase.getNombre());
             ps.setTime(2, Time.valueOf(clase.getHorario()));
-            ps.setInt(3, entrenador.getId());
+            ps.setInt(3, entrenador.getIdEntrenador());
             ps.setInt(4, clase.getCapacidad());
             ps.setBoolean(5, clase.isEstado());
             ps.executeUpdate();
