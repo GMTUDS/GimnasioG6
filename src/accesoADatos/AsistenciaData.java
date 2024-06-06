@@ -22,30 +22,38 @@ public class AsistenciaData {
     private Connection conn = null;
     private SocioData soDa;
     private ClaseData claDa;
+    private MembresiaData meDa;
 
     public AsistenciaData() {
         conn = Conexion.getConexion();
         soDa = new SocioData();
         claDa = new ClaseData();
+        meDa = new MembresiaData();
     }
 
     public void agregarAsistencia(int idSocio, int idClase, LocalDate fechaAsistencia) {
-        String sql = "INSERT INTO asistencia (idSocio, IdClase, fechaAsistencia) "
-                + "VALUES (?,?,?)";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, idSocio);
-            ps.setInt(2, idClase);
-            ps.setDate(3, Date.valueOf(fechaAsistencia));
-            int filas = ps.executeUpdate();
-            if (filas == 1) {
-                JOptionPane.showMessageDialog(null, "Se agregó la asistencia");
-            }
-            ps.close();
-        } catch (SQLException ex) {
+        if (meDa.buscarMembresiaActiva(idSocio) == null) {
+            JOptionPane.showMessageDialog(null, "El socio no tiene una membresia activa");
+        } else {
+
+            meDa.modificarPases(idSocio);
+            String sql = "INSERT INTO asistencia (idSocio, idClase, fechaAsistencia) "
+                    + "VALUES (?,?,?)";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, idSocio);
+                ps.setInt(2, idClase);
+                ps.setDate(3, Date.valueOf(fechaAsistencia));
+                int filas = ps.executeUpdate();
+                if (filas == 1) {
+                    JOptionPane.showMessageDialog(null, "Se agregó la asistencia");
+                }
+                ps.close();
+            } catch (SQLException ex) {
 //            JOptionPane.showMessageDialog(null, "Error al"
 //                    + "acceder a la tabla asistencia \n"+ex);
-            System.out.println("Error al acceder a la tabla Asistencia \n" + ex);
+                System.out.println("Error al acceder a la tabla Asistencia \n" + ex);
+            }
         }
     }
 
@@ -77,7 +85,7 @@ public class AsistenciaData {
     }
 
     public void modificarAsistencia(Asistencia asistencia) {
-        String sql = "UPDATE asistencia SET idSocio = ?,IdClase = ?,fechaAsistencia = ? WHERE idAsistencia = ?";
+        String sql = "UPDATE asistencia SET idSocio = ?, idClase = ?, fechaAsistencia = ? WHERE idAsistencia = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, asistencia.getSocio().getIdSocio());
