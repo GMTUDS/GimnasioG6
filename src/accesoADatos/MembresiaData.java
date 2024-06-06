@@ -92,5 +92,35 @@ public class MembresiaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia \n " + ex);
         }
     }
+    
+     public void agregarMembresia(Membresia membre) {
+        String sql = "INSERT INTO membresia "
+                + "(idSocio, cantidadPases, fechaInicio, fechaFin, costo, estado) "
+                + "VALUES(?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, membre.getSocio().getIdSocio());
+            ps.setInt(2, membre.getCantidadPases());
+            ps.setDate(3, membre.getFechaInicio().LocalDate());
+            ps.setDate(4, membre.getFechaFin());
+            ps.setDouble(5, membre.getCosto());
+            ps.setBoolean(6, membre.isEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if (rs.next()) {
+                membre.setIdMembresia(rs.getInt(1));
+
+                JOptionPane.showMessageDialog(null, "Membresia Guardada");
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL ACCEDER A LA TABLA MEMBRESIA");
+            System.out.println(ex.getMessage());
+        }
+    }
+    
 
 }
