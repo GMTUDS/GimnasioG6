@@ -101,8 +101,8 @@ public class MembresiaData {
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, membre.getSocio().getIdSocio());
             ps.setInt(2, membre.getCantidadPases());
-            ps.setDate(3, membre.getFechaInicio());
-            ps.setDate(4, membre.getFechaFin());
+            ps.setDate(3, Date.valueOf(membre.getFechaInicio()));
+            ps.setDate(4, Date.valueOf(membre.getFechaInicio()));
             ps.setDouble(5, membre.getCosto());
             ps.setBoolean(6, membre.isEstado());
             ps.executeUpdate();
