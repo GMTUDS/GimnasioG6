@@ -61,8 +61,8 @@ public class MembresiaData {
     }
     
     
-    public void renovarMembresia(int idSocio, int pases, int fechaInicio) {
-        agregarMembresia(int idSocio, int pases, int fechaInicio);
+    public void renovarMembresia(Membresia membresia) {
+        agregarMembresia(membresia);
     }
     
     public void modificarPases(int idSocio) {
