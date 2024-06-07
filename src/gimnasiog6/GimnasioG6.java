@@ -14,6 +14,8 @@ import entidades.Socio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,6 +36,22 @@ public class GimnasioG6 {
         MembresiaData memData = new MembresiaData();
         EntrenadorData entreData = new EntrenadorData();
         
+//        List<Asistencia> asislist= asisData.listarAsistenciasDelSocio(2);
+//        for (Asistencia arg : asislist) {
+//            System.out.println(arg.toString());
+//        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 //        ENTIDADES
         Entrenador entrenador = new Entrenador();
         entrenador.setDni("235709");
@@ -51,6 +69,7 @@ public class GimnasioG6 {
         clase.setHorario(LocalTime.of(16, 30));
         clase.setEstado(true);
         clase.setIdClase(4);
+        System.out.println(claData.buscarClasePorNombre("Gluteos up"));
 //        entrenador.setIdEntrenador(entreData.buscarEntrenadorPorNombre("Gerardo").getIdEntrenador());
 //        claData.agregarClase(clase, entrenador);
 //        
@@ -79,6 +98,14 @@ public class GimnasioG6 {
         asistencia.setSocio(socio);
         asistencia.setFechaAsistencia(LocalDate.now());
         asisData.agregarAsistencia(asistencia);
+        
+
+
+
+
+        
+        
+        
         
     }
     

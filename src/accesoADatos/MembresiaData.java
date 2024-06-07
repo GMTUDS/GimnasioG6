@@ -92,18 +92,19 @@ public class MembresiaData {
 //        mem = buscarMembresiaActiva();
 //        int cont = mem.getCantidadPases();
 //        
-        Membresia mem = buscarMembresiaActiva(idSocio);
-        System.out.println(mem);
-        int cont = mem.getCantidadPases();
-        System.out.println(cont);
+//funcionando:
+//        Membresia mem = buscarMembresiaActiva(idSocio);
+//        System.out.println(mem);
+//        int cont = mem.getCantidadPases();
+//        System.out.println(cont);
         
-        String sql = "UPDATE membresia SET cantidadPases = ? WHERE idSocio = ?";
+        String sql = "UPDATE membresia SET cantidadPases = cantidadPases-1 WHERE idSocio = ?";
         
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            cont -= 1;
-            ps.setInt(1, cont);
-            ps.setInt(2, idSocio);
+//            cont -= 1;
+//            ps.setInt(1, cont);
+            ps.setInt(1, idSocio);
             int filas = ps.executeUpdate();
             if (filas == 1) {
                 JOptionPane.showMessageDialog(null, "Se restó un pase");

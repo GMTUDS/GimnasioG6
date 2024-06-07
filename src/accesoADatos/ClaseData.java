@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
 public class ClaseData {
     
     private Connection con = null;
-    
+    EntrenadorData entreData;
     public ClaseData(){
+        entreData=new EntrenadorData();
         con = Conexion.getConexion();
     }
     
@@ -77,7 +78,12 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
+                
                 clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Entrenador entrenador = new Entrenador();
+                entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+  
+                clase.setEntrenador(entrenador);
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
             }
