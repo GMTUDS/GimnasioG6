@@ -146,8 +146,33 @@ public class EntrenadorData {
         return entrenadores;
     
     }
+             public Entrenador buscarEntrenadorPorId(int idEntrenador) {
+        Entrenador entrenador =null;
+        try {
+            String sql = "SELECT * FROM entrenador WHERE idEntrenador = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idEntrenador);
+            ResultSet rs = ps.executeQuery();
+           
+            while (rs.next()) {
+                entrenador=new Entrenador();
+                entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
+                entrenador.setDni(rs.getString("dni"));
+                entrenador.setNombre(rs.getString("nombre"));
+                entrenador.setApellido(rs.getString("apellido"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
+                entrenador.setEstado(rs.getBoolean("estado"));
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Entrenador " + ex.getMessage());
+        }
+        return entrenador;
     
-       public void modificarAlumno(Entrenador entrenador) {
+    }
+    
+       public void modificarEntrenador(Entrenador entrenador) {
         String sql = "UPDATE entrenador SET dni = ?, nombre = ?, apellido = ?, especialidad = ? "
                 + "WHERE idEntrenador = ?";
         try {
