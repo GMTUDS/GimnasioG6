@@ -38,7 +38,7 @@ public class MembresiaData {
             
             while (rs.next()) {
                 membresia.setIdMembresia(rs.getInt("idMembresia"));
-                membresia.setSocio(rs.getSocio("Socio"));
+//                membresia.setSocio(rs.getSocio("Socio"));
                 membresia.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 membresia.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 

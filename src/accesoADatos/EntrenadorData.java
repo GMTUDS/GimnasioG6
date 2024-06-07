@@ -46,12 +46,11 @@ public class EntrenadorData {
         }
     }
     
-     public List<Entrenador> listarEntrenador(String especialidad) {
+     public List<Entrenador> listarEntrenadores() {
         List<Entrenador> entrenadores = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM entrenador WHERE especialidad = ? ";
+            String sql = "SELECT * FROM entrenador WHERE estado=1";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, especialidad);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Entrenador entrenador = new Entrenador();
@@ -98,7 +97,7 @@ public class EntrenadorData {
     
     public Entrenador buscarEntrenadorPorApellido(String apellido) {
         Entrenador entrenador = null;
-        String sql = "SELECT dni, nombre, apellido, especialiad, estado FROM entrenador WHERE apellido = ? AND estado = 1";
+        String sql = "SELECT * FROM entrenador WHERE apellido = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -109,6 +108,7 @@ public class EntrenadorData {
                 entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
                 entrenador.setDni(rs.getString("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
                 entrenador.setApellido(rs.getString("apellido"));
                 entrenador.setEstado(true);
             } else {
@@ -178,8 +178,8 @@ public class EntrenadorData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, entrenador.getDni());
-            ps.setString(3, entrenador.getNombre());
-            ps.setString(2, entrenador.getApellido());
+            ps.setString(2, entrenador.getNombre());
+            ps.setString(3, entrenador.getApellido());
             ps.setString(4, entrenador.getEspecialidad());
             ps.setInt(5, entrenador.getIdEntrenador());
             int filas = ps.executeUpdate();
@@ -193,7 +193,7 @@ public class EntrenadorData {
         }
     } 
        
-         public void eliminarAlumno(int idEntrenador) {
+         public void eliminarEntrenador(int idEntrenador) {
         String sql = "UPDATE entrenador SET estado = 0 WHERE idEntrenador = ?";
 
         try {

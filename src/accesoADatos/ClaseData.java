@@ -53,7 +53,10 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+//                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Entrenador entrenador = new Entrenador();
+                entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setEntrenador(entrenador);
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
                 clases.add(clase);
@@ -79,10 +82,10 @@ public class ClaseData {
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 
-                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 Entrenador entrenador = new Entrenador();
                 entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
-  
+//                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+//                clase.setEntrenador(entrenador);
                 clase.setEntrenador(entrenador);
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
@@ -107,7 +110,11 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+//                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Entrenador entrenador = new Entrenador();
+                entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setEntrenador(entrenador);
+                
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
                 
@@ -132,7 +139,12 @@ public class ClaseData {
                 clase.setIdClase(rs.getInt("idClase"));
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                
+                Entrenador entrenador = new Entrenador();
+                entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setEntrenador(entrenador);
+//                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado"));
             }
@@ -178,12 +190,16 @@ public class ClaseData {
     }
     
     public void eliminarClase(int idClase) {
-        String sql = "DELETE FROM clase WHERE idClase = ?";
+        String sql = "UPDATE clase SET estado=0 WHERE idClase = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idClase);
-            ps.executeUpdate();
+            int filas = ps.executeUpdate();
+            if (filas==1) {
             JOptionPane.showMessageDialog(null, "Clase eliminada");
+            }else{
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar");                
+            }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar la clase");

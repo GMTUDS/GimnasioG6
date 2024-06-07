@@ -36,11 +36,11 @@ public class GimnasioG6 {
         MembresiaData memData = new MembresiaData();
         EntrenadorData entreData = new EntrenadorData();
         
-//        List<Asistencia> asislist= asisData.listarAsistenciasDelSocio(2);
-//        for (Asistencia arg : asislist) {
+//        List<Entrenador> asislist= entreData.buscarEntrenadorPorEspecialidad("Calistenia");
+//        for (Entrenador arg : asislist) {
 //            System.out.println(arg.toString());
 //        }
-        
+//        
         
         
         
@@ -54,14 +54,14 @@ public class GimnasioG6 {
         
 //        ENTIDADES
         Entrenador entrenador = new Entrenador();
-        entrenador.setDni("235709");
-        entrenador.setNombre("Gerardo");
-        entrenador.setApellido("Moya");
-        entrenador.setEspecialidad("Gluteos");
+        entrenador.setDni("8944229");
+        entrenador.setNombre("Anabela");
+        entrenador.setApellido("Gomez");
+        entrenador.setEspecialidad("Piernas");
         entrenador.setEstado(true);
-        entrenador.setIdEntrenador(2);
+        entrenador.setIdEntrenador(3);
         
-//        entreData.guardarEntrenador(entrenador);
+        
         
         Clase clase = new Clase();
         clase.setNombre("Gluteos up");
@@ -69,7 +69,9 @@ public class GimnasioG6 {
         clase.setHorario(LocalTime.of(16, 30));
         clase.setEstado(true);
         clase.setIdClase(4);
-        System.out.println(claData.buscarClasePorNombre("Gluteos up"));
+        clase.setCapacidad(20);
+        
+//        System.out.println(claData.buscarClasePorNombre("Gluteos up"));
 //        entrenador.setIdEntrenador(entreData.buscarEntrenadorPorNombre("Gerardo").getIdEntrenador());
 //        claData.agregarClase(clase, entrenador);
 //        
@@ -79,9 +81,10 @@ public class GimnasioG6 {
         socio.setApellido("Sosa");
         socio.setCorreo("rebs@mail.com");
         socio.setTelefono("2947839");
-        socio.setEdad(28);
+        socio.setEdad(25);
         socio.setEstado(true);
         socio.setIdSocio(2);
+//        soData.eliminarSocio(2);
 //        soData.agregarSocio(socio);
 //        
         Membresia membresia = new Membresia();
@@ -97,7 +100,7 @@ public class GimnasioG6 {
         asistencia.setClase(clase);
         asistencia.setSocio(socio);
         asistencia.setFechaAsistencia(LocalDate.now());
-        asisData.agregarAsistencia(asistencia);
+//        asisData.agregarAsistencia(asistencia);
         
 
 
