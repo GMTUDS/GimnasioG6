@@ -72,7 +72,7 @@ public class EntrenadorData {
     }
     public Entrenador buscarEntrenadorPorNombre(String nombre) {
         Entrenador entrenador = null;
-        String sql = "SELECT dni, nombre, apellido, especialiad, estado FROM entrenador WHERE nombre = ? AND estado = 1";
+        String sql = "SELECT * FROM entrenador WHERE nombre = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -84,6 +84,7 @@ public class EntrenadorData {
                 entrenador.setDni(rs.getString("dni"));
                 entrenador.setNombre(rs.getString("nombre"));
                 entrenador.setApellido(rs.getString("apellido"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
                 entrenador.setEstado(true);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el entrenador");

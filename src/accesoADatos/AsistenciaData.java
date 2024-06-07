@@ -31,21 +31,23 @@ public class AsistenciaData {
         meDa = new MembresiaData();
     }
 
-    public void agregarAsistencia(int idSocio, int idClase, LocalDate fechaAsistencia) {
-        if (meDa.buscarMembresiaActiva(idSocio) == null) {
+    public void agregarAsistencia(Asistencia asistencia) {
+        if (meDa.buscarMembresiaActiva(asistencia.getSocio().getIdSocio()) == null) {
             JOptionPane.showMessageDialog(null, "El socio no tiene una membresia activa");
         } else {
 
-            meDa.modificarPases(idSocio);
+            meDa.modificarPases(asistencia.getSocio().getIdSocio());
             String sql = "INSERT INTO asistencia (idSocio, idClase, fechaAsistencia) "
                     + "VALUES (?,?,?)";
             try {
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setInt(1, idSocio);
-                ps.setInt(2, idClase);
-                ps.setDate(3, Date.valueOf(fechaAsistencia));
-                int filas = ps.executeUpdate();
-                if (filas == 1) {
+                PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, asistencia.getSocio().getIdSocio());
+                ps.setInt(2, asistencia.getClase().getIdClase());
+                ps.setDate(3, Date.valueOf(asistencia.getFechaAsistencia()));
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                while (rs.next()) {
+                    asistencia.setIdAsistencia(rs.getInt(1));
                     JOptionPane.showMessageDialog(null, "Se agregó la asistencia");
                 }
                 ps.close();

@@ -22,13 +22,13 @@ import javax.swing.JOptionPane;
 public class MembresiaData {
 
     private Connection conn = null;
-     MembresiaData membresiaData;
-         SocioData socioData;
-         Socio socio;
-         Membresia membresia;
+//     MembresiaData membresiaData;
+         private SocioData socioData;
+         private Socio socio;
+         private Membresia membresia;
     public MembresiaData() {
-        conn = Conexion.getConexion();
-       membresiaData=new MembresiaData();
+       conn = Conexion.getConexion();
+//       membresiaData=new MembresiaData();
        membresia=new Membresia();
        socio=new Socio();
        socioData=new SocioData();
@@ -47,11 +47,13 @@ public class MembresiaData {
                 membresia.setIdMembresia(rs.getInt("idMembresia"));
                 socio=socioData.buscarSocioPorId(rs.getInt("idSocio"));
                 membresia.setSocio(socio);
+//                System.out.println(socio);
                 membresia.setCantidadPases(rs.getInt("cantidadPases"));
                 membresia.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 membresia.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 membresia.setCosto(rs.getDouble("costo"));
                 membresia.setEstado(rs.getBoolean("estado"));
+//                System.out.println(membresia);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -71,8 +73,12 @@ public class MembresiaData {
 //        mem = buscarMembresiaActiva();
 //        int cont = mem.getCantidadPases();
 //        
-        int cont = buscarMembresiaActiva(idSocio).getCantidadPases();
-        String sql = "UPDATE membresia SET pases = ? WHERE idSocio = ?";
+        Membresia mem = buscarMembresiaActiva(idSocio);
+        System.out.println(mem);
+        int cont = mem.getCantidadPases();
+        System.out.println(cont);
+        
+        String sql = "UPDATE membresia SET cantidadPases = ? WHERE idSocio = ?";
         
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -113,7 +119,7 @@ public class MembresiaData {
             ps.setInt(1, membre.getSocio().getIdSocio());
             ps.setInt(2, membre.getCantidadPases());
             ps.setDate(3, Date.valueOf(membre.getFechaInicio()));
-            ps.setDate(4, Date.valueOf(membre.getFechaInicio()));
+            ps.setDate(4, Date.valueOf(membre.getFechaInicio().plusDays(30)));
             ps.setDouble(5, membre.getCosto());
             ps.setBoolean(6, membre.isEstado());
             ps.executeUpdate();
@@ -149,7 +155,7 @@ public boolean sonIgualesLasFechas(LocalDate tiempoFin){
 public void modificarMembresiasVencidas(){
     List<Membresia> membresias = buscarMembresiasActivas();
     for (Membresia membresia1 : membresias) {
-        boolean bandera= membresiaData.sonIgualesLasFechas(membresia1.getFechaFin());
+        boolean bandera= sonIgualesLasFechas(membresia1.getFechaFin());
         if(bandera){
           String sql = "UPDATE membresia SET estado = 0 WHERE idMembresia = ?";
          try {
