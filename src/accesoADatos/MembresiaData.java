@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package accesoADatos;
-
 import entidades.Membresia;
 import entidades.Socio;
 import java.sql.*;
@@ -14,7 +9,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author NandoJ
@@ -33,6 +27,31 @@ public class MembresiaData {
        socio=new Socio();
        socioData=new SocioData();
     }
+    
+    public List<Membresia> historialDeMembresias() {
+        String sql = "SELECT * FROM membresia";
+        List<Membresia> membresias = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                membresia.setIdMembresia(rs.getInt("idMembresia"));
+                membresia.setSocio(rs.getSocio("Socio"));
+                membresia.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                membresia.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                
+                membresias.add(membresia);
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia: " + ex.getMessage());
+        }
+        
+        return membresias;
+}
    public Membresia buscarMembresiaActiva(int idSocio){
         String sql= "SELECT * FROM  membresia WHERE estado = 1 AND idSocio = ? ";
         SocioData socioData=new SocioData();
