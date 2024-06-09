@@ -103,7 +103,7 @@ public class SocioData {
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
                 socio.setEstado(true);
-                System.out.println(socio.toString());
+//                System.out.println(socio.toString());
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el socio");
             }

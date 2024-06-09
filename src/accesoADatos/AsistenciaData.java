@@ -61,7 +61,8 @@ public class AsistenciaData {
 
     public List<Asistencia> listarAsistenciasDelSocio(int idSocio) {
         ArrayList<Asistencia> listaAsistencias = new ArrayList<>();
-        String sql = "SELECT * FROM asistencia WHERE idSocio=?";
+        String sql = "SELECT asistencia.*, clase.nombre FROM asistencia JOIN clase "
+                + "ON (asistencia.idClase = clase.idClase) WHERE idSocio = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, idSocio);
@@ -69,9 +70,10 @@ public class AsistenciaData {
             while (rs.next()) {
                 Asistencia asistencia = new Asistencia();
                 Socio socio = new Socio();
-//                Clase clase = new Clase();
+                Clase clase = new Clase();
                 socio = soDa.buscarSocioPorId(rs.getInt("idSocio"));
-//                clase = claDa.b
+                clase = claDa.buscarClasePorNombre(rs.getString("nombre"));
+                asistencia.setClase(clase);
                 asistencia.setIdAsistencia(rs.getInt("idAsistencia"));
                 asistencia.setSocio(socio);
                 asistencia.setFechaAsistencia(rs.getDate("fechaAsistencia").toLocalDate());
