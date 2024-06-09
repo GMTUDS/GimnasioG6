@@ -261,7 +261,7 @@ public class MembresiaData {
             ps.setInt(1, idSocio);
             int filas = ps.executeUpdate();
             if (filas == 1) {
-                JOptionPane.showMessageDialog(null, "Se dio de baja la membresia");
+                JOptionPane.showMessageDialog(null, "Se dio de baja la membresia,no tiene mas pases");
                 bandera=false;
             }
             ps.close();
