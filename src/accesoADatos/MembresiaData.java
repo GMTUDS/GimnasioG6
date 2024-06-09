@@ -107,7 +107,8 @@ public class MembresiaData {
 //        System.out.println(mem);
 //        int cont = mem.getCantidadPases();
 //        System.out.println(cont);
-
+      boolean bandera=ControlarPases(idSocio);
+      if(bandera){
         String sql = "UPDATE membresia SET cantidadPases = cantidadPases-1 WHERE idSocio = ? AND estado = 1";
 
         try {
@@ -123,6 +124,7 @@ public class MembresiaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia \n " + ex);
         }
+      }
     }
 
     public void cancelarMembresia(int idSocio) {
@@ -139,6 +141,7 @@ public class MembresiaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia \n " + ex);
         }
     }
+    
 
     public void agregarMembresia(Membresia membre) {
         String sql = "INSERT INTO membresia "
@@ -249,5 +252,22 @@ public class MembresiaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia \n" + ex.getMessage());
         }
+    }
+    public boolean ControlarPases(int idSocio) {
+        boolean bandera=true;
+        String sql = "UPDATE membresia SET estado = 0 WHERE idSocio = ? AND cantidadPases <= 0";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idSocio);
+            int filas = ps.executeUpdate();
+            if (filas == 1) {
+                JOptionPane.showMessageDialog(null, "Se dio de baja la membresia");
+                bandera=false;
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla membresia " + ex);
+        }
+        return bandera;
     }
 }
