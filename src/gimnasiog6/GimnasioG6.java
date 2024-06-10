@@ -108,15 +108,15 @@ public class GimnasioG6 {
         asistencia.setClase(clase);
         asistencia.setSocio(socio);
         asistencia.setFechaAsistencia(LocalDate.now());
-        asistencia.setIdAsistencia(32);
-//        asisData.agregarAsistencia(asistencia);
+//        asistencia.setIdAsistencia(32);
+        asisData.agregarAsistencia(asistencia);
         
 //        asisData.agregarAsistencia(asistencia);
-        asisData.modificarAsistencia(asistencia);
+//        asisData.modificarAsistencia(asistencia);
 //        for (Asistencia asistencia1 : asisData.listarAsistenciasDelSocio(3)) {
 //            System.out.println(asistencia1);
 //        }
-
+        
 
 
 

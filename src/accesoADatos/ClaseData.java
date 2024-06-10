@@ -3,12 +3,16 @@ package accesoADatos;
  *
  * @author elise
  */
+import entidades.Asistencia;
 import entidades.Clase;
 import entidades.Entrenador;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 public class ClaseData {
     
@@ -205,5 +209,34 @@ public class ClaseData {
             JOptionPane.showMessageDialog(null, "Error al eliminar la clase");
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public Clase consultarCapacidadHoy(Asistencia asistencia){
+        Clase clase = null;
+        LocalDate hoy = LocalDate.now();
+        String sql = "SELECT idClase, nombre, idEntrenador FROM clase WHERE horario=? "
+                + "AND nombre LIKE ? AND capacidad > (SELECT COUNT(idSocio) "
+                + "FROM asistencia WHERE idClase = ? AND fechaAsistencia=?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setTime(1, Time.valueOf(asistencia.getClase().getHorario()));
+            ps.setString(2, asistencia.getClase().getNombre());
+            ps.setInt(3, asistencia.getClase().getIdClase());
+            ps.setDate(4, Date.valueOf(asistencia.getFechaAsistencia()));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+              clase = new Clase();
+              clase.setIdClase(rs.getInt("idClase"));
+              clase.setNombre(rs.getString("nombre"));
+              Entrenador entrenador = new Entrenador();
+              entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+              clase.setEntrenador(entrenador);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla");
+            System.out.println(ex.getMessage());
+        }
+        return clase;
     }
 }

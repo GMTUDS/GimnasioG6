@@ -32,9 +32,11 @@ public class AsistenciaData {
     }
 
     public void agregarAsistencia(Asistencia asistencia) {
-        if (meDa.buscarMembresiaActiva(asistencia.getSocio().getIdSocio()) == null) {
+        if (meDa.buscarMembresiaActiva(asistencia.getSocio().getIdSocio()) == null){
             JOptionPane.showMessageDialog(null, "El socio no tiene una membresia activa");
-        } else {
+        }else if(claDa.consultarCapacidadHoy(asistencia)==null){
+            JOptionPane.showMessageDialog(null, "No se puede asistir, la clase ya alcanzó su capacidad máxima");
+        }else {
 
             meDa.modificarPases(asistencia.getSocio().getIdSocio());
             String sql = "INSERT INTO asistencia (idSocio, idClase, fechaAsistencia) "
