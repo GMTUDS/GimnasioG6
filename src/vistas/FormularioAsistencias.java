@@ -200,7 +200,7 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFNyASocioActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-        
+        dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
