@@ -32,6 +32,7 @@ public class AsistenciaData {
     }
 
     public void agregarAsistencia(Asistencia asistencia) {
+        meDa.ControlarPases(asistencia.getSocio().getIdSocio());
         if (meDa.buscarMembresiaActiva(asistencia.getSocio().getIdSocio()) == null){
             JOptionPane.showMessageDialog(null, "El socio no tiene una membresia activa");
         }else if(claDa.consultarCapacidadHoy(asistencia)==null){

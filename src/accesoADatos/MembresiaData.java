@@ -66,15 +66,16 @@ public class MembresiaData {
     public Membresia buscarMembresiaActiva(int idSocio) {
         String sql = "SELECT * FROM  membresia WHERE estado = 1 AND idSocio = ? ";
         SocioData socioData = new SocioData();
-        Socio socio = new Socio();
-        Membresia membresia = new Membresia();
+        socio = null;
+        membresia = null;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, idSocio);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
+                membresia = new Membresia();
                 membresia.setIdMembresia(rs.getInt("idMembresia"));
+                socio = new Socio();
                 socio = socioData.buscarSocioPorId(rs.getInt("idSocio"));
                 membresia.setSocio(socio);
 //                System.out.println(socio);
@@ -178,7 +179,7 @@ public class MembresiaData {
         if (hoy.isBefore(tiempoFin)) {
             bandera = false;
         } else if (hoy.isAfter(tiempoFin)) {
-            bandera = false;
+            bandera = true;
         } else {
             bandera = true;
         }
@@ -261,7 +262,7 @@ public class MembresiaData {
             ps.setInt(1, idSocio);
             int filas = ps.executeUpdate();
             if (filas == 1) {
-                JOptionPane.showMessageDialog(null, "Se dio de baja la membresia,no tiene mas pases");
+                JOptionPane.showMessageDialog(null, "No tiene mas pases");
                 bandera=false;
             }
             ps.close();
