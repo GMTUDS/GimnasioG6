@@ -210,7 +210,34 @@ public class ClaseData {
             System.out.println(ex.getMessage());
         }
     }
-    
+    public List<Clase> listarClasesPorNombre(String nombre){
+        ArrayList<Clase> clases= new ArrayList<>();
+        Clase clase = null;
+        Entrenador entrenador = null;
+        String sql = "SELECT * FROM clase WHERE nombre = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                clase = new Clase();
+                clase.setIdClase(rs.getInt("idClase"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                entrenador = new Entrenador();
+                entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setEntrenador(entrenador);
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
+                clases.add(clase);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la clase x nombre");
+            System.out.println(ex.getMessage());
+        }
+        return clases;
+    }
     public Clase consultarCapacidadHoy(Asistencia asistencia){
         Clase clase = null;
         LocalDate hoy = LocalDate.now();
