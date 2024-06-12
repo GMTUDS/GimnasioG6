@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author elise
  */
-public class AgregarModifClase1Pruebas extends javax.swing.JInternalFrame {
+public class FormularioAgregarClase extends javax.swing.JInternalFrame {
 
     private ClaseData claseData = new ClaseData();
     private EntrenadorData entrenadorData = new EntrenadorData();
@@ -27,7 +27,7 @@ public class AgregarModifClase1Pruebas extends javax.swing.JInternalFrame {
     /**
      * Creates new form Clases
      */
-    public AgregarModifClase1Pruebas() {
+    public FormularioAgregarClase() {
         initComponents();
         cargarEntrenadores();
         horarios();
@@ -141,9 +141,7 @@ public class AgregarModifClase1Pruebas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCBHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jCBHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTFNombre)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

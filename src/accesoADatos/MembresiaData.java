@@ -33,7 +33,7 @@ public class MembresiaData {
     }
 
     public List<Membresia> historialDeMembresiasSocio(String dni) {
-        String sql = "SELECT membresia.* FROM membresia m  JOIN socio s ON m.idSocio = s.idSocio WHERE s.dni = ?";
+        String sql = "SELECT m.* FROM membresia m  JOIN socio s ON m.idSocio = s.idSocio WHERE s.dni = ?";
         List<Membresia> membresias = new ArrayList<>();
         socio = null;
         try {
@@ -131,7 +131,7 @@ public class MembresiaData {
     }
 
     public void cancelarMembresia(String dni) {
-        String sql = "UPDATE membresia m JOIN socio s ON m.idSocio = s.idSocio SET m.estado = 0 WHERE s.dni = ? AND estado = 1";
+        String sql = "UPDATE membresia m JOIN socio s ON m.idSocio = s.idSocio SET m.estado = 0 WHERE s.dni = ? AND m.estado = 1";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, dni);

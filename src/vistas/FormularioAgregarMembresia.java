@@ -12,11 +12,10 @@ import javax.swing.JOptionPane;
 public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
    
     private Connection connection;
-
     /**
      * Creates new form FormularioAgregarMembresia
      */
-    public FormularioAgregarMembresia(Connection connection) {
+    public FormularioAgregarMembresia() {
         this.connection = connection;
         initComponents();
     }

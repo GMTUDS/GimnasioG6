@@ -58,6 +58,7 @@ public class FormularioMembresia extends javax.swing.JInternalFrame {
                 "Pases", "Fecha de Inicio", "Costo"
             }
         ));
+        jTMembresia.setEnabled(false);
         jScrollPane1.setViewportView(jTMembresia);
 
         jBSalir.setText("Salir");
@@ -90,22 +91,19 @@ public class FormularioMembresia extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBDarDeBaja)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 541, Short.MAX_VALUE)
                         .addComponent(jBSalir))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(jLabel2)
-                            .addGap(102, 102, 102)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTFDniSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jBBuscar))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTFDniSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBBuscar))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,7 +135,7 @@ public class FormularioMembresia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-       
+       borrarFilas();
        List<Membresia> membresias= membresiaData.historialDeMembresiasSocio(jTFDniSocio.getText());
         for (Membresia membresia : membresias) {
             String activo;
@@ -158,10 +156,11 @@ public class FormularioMembresia extends javax.swing.JInternalFrame {
      modelo.addColumn("Fin");
      modelo.addColumn("Costo");
      modelo.addColumn("Estado");
+     jTMembresia.setModel(modelo);
  }
    public void borrarFilas(){
        int cantidadFilas= modelo.getRowCount();
-       for (int i =cantidadFilas-1; i <= 0; i--) {
+       for (int i =cantidadFilas-1; i >= 0; i--) {
            modelo.removeRow(i);
        }
    }

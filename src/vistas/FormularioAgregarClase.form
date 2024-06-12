@@ -69,10 +69,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jCBHorarios" min="-2" pref="202" max="-2" attributes="0"/>
-                              <EmptySpace min="1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jCBHorarios" min="-2" pref="202" max="-2" attributes="0"/>
                           <Component id="jTFNombre" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">

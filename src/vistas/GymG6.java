@@ -155,7 +155,7 @@ public class GymG6 extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        AgregarModifClase1Pruebas agreModifClase = new AgregarModifClase1Pruebas();
+        FormularioAgregarClase agreModifClase = new FormularioAgregarClase();
         agreModifClase.setVisible(true);
         jDesktopPane1.add(agreModifClase);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -198,7 +198,7 @@ public class GymG6 extends javax.swing.JFrame {
     private void jMIAgregarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarMembresiaActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        FormularioMembresia membresia = new FormularioMembresia();
+        FormularioAgregarMembresia membresia = new FormularioAgregarMembresia();
         membresia.setVisible(true);
         jDesktopPane1.add(membresia);
     }//GEN-LAST:event_jMIAgregarMembresiaActionPerformed
