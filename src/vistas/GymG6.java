@@ -4,17 +4,21 @@
  */
 package vistas;
 
+import accesoADatos.MembresiaData;
+
 /**
  *
  * @author elise
  */
 public class GymG6 extends javax.swing.JFrame {
-
+     MembresiaData membresiaData;
     /**
      * Creates new form GymG6
      */
     public GymG6() {
         initComponents();
+        membresiaData=new MembresiaData();
+        membresiaData.modificarMembresiasVencidas();
     }
 
     /**
@@ -35,6 +39,8 @@ public class GymG6 extends javax.swing.JFrame {
         jMEntrenadores = new javax.swing.JMenu();
         jMIListarEntrenadores = new javax.swing.JMenuItem();
         jMMembresia = new javax.swing.JMenu();
+        jMIFormularioMembresia = new javax.swing.JMenuItem();
+        jMIAgregarMembresia = new javax.swing.JMenuItem();
         jMAsistencias = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,6 +99,23 @@ public class GymG6 extends javax.swing.JFrame {
         jMenuBar1.add(jMEntrenadores);
 
         jMMembresia.setText("Membresia");
+
+        jMIFormularioMembresia.setText("Historial Membresia");
+        jMIFormularioMembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIFormularioMembresiaActionPerformed(evt);
+            }
+        });
+        jMMembresia.add(jMIFormularioMembresia);
+
+        jMIAgregarMembresia.setText("Agregar Membresia");
+        jMIAgregarMembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarMembresiaActionPerformed(evt);
+            }
+        });
+        jMMembresia.add(jMIAgregarMembresia);
+
         jMenuBar1.add(jMMembresia);
 
         jMAsistencias.setText("Asistencias");
@@ -164,6 +187,22 @@ public class GymG6 extends javax.swing.JFrame {
         jDesktopPane1.add(formAsistencia);
     }//GEN-LAST:event_jMAsistenciasMouseClicked
 
+    private void jMIFormularioMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioMembresiaActionPerformed
+         jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        FormularioMembresia formMembresia = new FormularioMembresia();
+        formMembresia.setVisible(true);
+        jDesktopPane1.add(formMembresia);
+    }//GEN-LAST:event_jMIFormularioMembresiaActionPerformed
+
+    private void jMIAgregarMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarMembresiaActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        FormularioMembresia membresia = new FormularioMembresia();
+        membresia.setVisible(true);
+        jDesktopPane1.add(membresia);
+    }//GEN-LAST:event_jMIAgregarMembresiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -204,6 +243,8 @@ public class GymG6 extends javax.swing.JFrame {
     private javax.swing.JMenu jMAsistencias;
     private javax.swing.JMenu jMClases;
     private javax.swing.JMenu jMEntrenadores;
+    private javax.swing.JMenuItem jMIAgregarMembresia;
+    private javax.swing.JMenuItem jMIFormularioMembresia;
     private javax.swing.JMenuItem jMIListarEntrenadores;
     private javax.swing.JMenu jMMembresia;
     private javax.swing.JMenu jMSocio;

@@ -32,12 +32,14 @@ public class MembresiaData {
         socioData = new SocioData();
     }
 
-    public List<Membresia> historialDeMembresias() {
-        String sql = "SELECT * FROM membresia";
+    public List<Membresia> historialDeMembresiasSocio(String dni) {
+        String sql = "SELECT membresia.* FROM membresia m  JOIN socio s ON m.idSocio = s.idSocio WHERE s.dni = ?";
         List<Membresia> membresias = new ArrayList<>();
         socio = null;
         try {
+            
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,dni);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -128,11 +130,11 @@ public class MembresiaData {
       }
     }
 
-    public void cancelarMembresia(int idSocio) {
-        String sql = "UPDATE membresia SET estado = 0 WHERE idSocio = ? AND estado = 1";
+    public void cancelarMembresia(String dni) {
+        String sql = "UPDATE membresia m JOIN socio s ON m.idSocio = s.idSocio SET m.estado = 0 WHERE s.dni = ? AND estado = 1";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, idSocio);
+            ps.setString(1, dni);
             int filas = ps.executeUpdate();
             if (filas == 1) {
                 JOptionPane.showMessageDialog(null, "Se canceló la membresia");
@@ -271,4 +273,5 @@ public class MembresiaData {
         }
         return bandera;
     }
+    
 }

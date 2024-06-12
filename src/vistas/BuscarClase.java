@@ -18,13 +18,7 @@ public class BuscarClase extends javax.swing.JInternalFrame {
      private DefaultTableModel modelo;
     public BuscarClase() {
         initComponents();
-         modelo = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int i, int i1) {
-                return i1 == 2;
-            }
-
-        };
+         modelo = new DefaultTableModel();
          armarCabecera();
     }
 
