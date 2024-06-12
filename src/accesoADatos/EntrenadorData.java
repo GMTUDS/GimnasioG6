@@ -146,6 +146,27 @@ public class EntrenadorData {
         return entrenadores;
     
     }
+         public List<String> listarEspecialidades(){
+     ArrayList<String> especialidades = new ArrayList<>();
+     String sql = "SELECT DISTINCT especialidad FROM entrenador WHERE estado = 1";
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            String especialidad = rs.getString("especialidad");
+            especialidades.add(especialidad);
+            
+            }
+            ps.close();
+        
+        }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "error al acceder a la tabla");
+            System.out.println(ex.getMessage());
+        }
+        return especialidades;
+     
+     }
              public Entrenador buscarEntrenadorPorId(int idEntrenador) {
         Entrenador entrenador =null;
         try {

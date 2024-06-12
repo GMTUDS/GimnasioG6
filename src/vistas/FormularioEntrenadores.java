@@ -7,11 +7,11 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 
-public class Entrenadores extends javax.swing.JInternalFrame {
+public class FormularioEntrenadores extends javax.swing.JInternalFrame {
     
      EntrenadorData entrenadorData= new EntrenadorData();
      Entrenador entrenadorActual = null;
-    public Entrenadores() {
+    public FormularioEntrenadores() {
         initComponents();
     }
 
@@ -77,6 +77,11 @@ public class Entrenadores extends javax.swing.JInternalFrame {
         });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBBuscarN.setText("Buscar");
         jBBuscarN.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +105,11 @@ public class Entrenadores extends javax.swing.JInternalFrame {
         });
 
         jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,7 +264,7 @@ public class Entrenadores extends javax.swing.JInternalFrame {
         String nombre = jTNombreEntrenador.getText();
         entrenadorActual= entrenadorData.buscarEntrenadorPorNombre(nombre);
         
-        if(entrenadorActual==null){
+        if(entrenadorActual!= null){
             
         jTIdEntrenador.setText(String.valueOf(entrenadorActual.getIdEntrenador()));
         jTDniEntrenador.setText(entrenadorActual.getDni());
@@ -272,9 +282,9 @@ public class Entrenadores extends javax.swing.JInternalFrame {
     private void jBBuscarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarAActionPerformed
          try{
         String apellido = jTApellidoEntrenador.getText();
-        entrenadorActual= entrenadorData.buscarEntrenadorPorNombre(apellido);
+        entrenadorActual= entrenadorData.buscarEntrenadorPorApellido(apellido);
         
-        if(entrenadorActual==null){
+        if(entrenadorActual!= null){
         jTIdEntrenador.setText(String.valueOf(entrenadorActual.getIdEntrenador()));
         jTDniEntrenador.setText(entrenadorActual.getDni());
         jTNombreEntrenador.setText(entrenadorActual.getNombre());
@@ -309,6 +319,22 @@ public class Entrenadores extends javax.swing.JInternalFrame {
            ex.printStackTrace();
        }
     }//GEN-LAST:event_jBBuscarIActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+                                                  
+         if(entrenadorActual != null){
+            entrenadorData.eliminarEntrenador(entrenadorActual.getIdEntrenador());
+            entrenadorActual=null;
+            limpiarCampos();
+        }else{
+            JOptionPane.showMessageDialog(this,"No existe el entrenador a eliminar");
+        }
+          
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
     
     
     private void limpiarCampos(){

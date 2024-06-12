@@ -38,6 +38,7 @@ public class GymG6 extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMEntrenadores = new javax.swing.JMenu();
         jMIListarEntrenadores = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMMembresia = new javax.swing.JMenu();
         jMIFormularioMembresia = new javax.swing.JMenuItem();
         jMIAgregarMembresia = new javax.swing.JMenuItem();
@@ -87,14 +88,22 @@ public class GymG6 extends javax.swing.JFrame {
         jMenuBar1.add(jMClases);
 
         jMEntrenadores.setText("Entrenadores");
-        jMEntrenadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMEntrenadoresMouseClicked(evt);
-            }
-        });
 
         jMIListarEntrenadores.setText("Listas de Entrenadores");
+        jMIListarEntrenadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIListarEntrenadoresActionPerformed(evt);
+            }
+        });
         jMEntrenadores.add(jMIListarEntrenadores);
+
+        jMenuItem3.setText("Formulario Entrenadores");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMEntrenadores.add(jMenuItem3);
 
         jMenuBar1.add(jMEntrenadores);
 
@@ -169,15 +178,6 @@ public class GymG6 extends javax.swing.JFrame {
         jDesktopPane1.add(formSocio);
     }//GEN-LAST:event_jMSocioMouseClicked
 
-    private void jMEntrenadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEntrenadoresMouseClicked
-        // TODO add your handling code here:
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        Entrenadores formEntrenadores = new Entrenadores();
-        formEntrenadores.setVisible(true);
-        jDesktopPane1.add(formEntrenadores);
-    }//GEN-LAST:event_jMEntrenadoresMouseClicked
-
     private void jMAsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMAsistenciasMouseClicked
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
@@ -202,6 +202,24 @@ public class GymG6 extends javax.swing.JFrame {
         membresia.setVisible(true);
         jDesktopPane1.add(membresia);
     }//GEN-LAST:event_jMIAgregarMembresiaActionPerformed
+
+    private void jMIListarEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListarEntrenadoresActionPerformed
+        jDesktopPane1.removeAll();
+      jDesktopPane1.repaint();
+       FormularioListasDeEntrenadores formMateria=new FormularioListasDeEntrenadores();
+       formMateria.setVisible(true);
+      jDesktopPane1.add(formMateria);
+       
+      
+    }//GEN-LAST:event_jMIListarEntrenadoresActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        jDesktopPane1.removeAll();
+      jDesktopPane1.repaint();
+       FormularioEntrenadores formentrena=new FormularioEntrenadores();
+       formentrena.setVisible(true);
+      jDesktopPane1.add(formentrena);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,5 +269,6 @@ public class GymG6 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,9 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo;
-    private Connection con = null;
+   
+     EntrenadorData entrenadorData = new EntrenadorData(); 
     public FormularioListasDeEntrenadores() {
         initComponents();
+        llenarComboBoxEspecialidades();
+       modelo = new DefaultTableModel();
+        armarCabecera(); 
+       
     }
 
     /**
@@ -43,6 +48,7 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jT = new javax.swing.JTable();
         jBBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jLabel1.setText("Listas de Entrenadores");
@@ -77,6 +83,13 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +108,10 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
                         .addComponent(jBBuscar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jButton1)))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,15 +125,18 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
                     .addComponent(jCBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCBEspecialidadesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBEspecialidadesItemStateChanged
-    llenarComboBoxEspecialidades();
+    
+
     
     }//GEN-LAST:event_jCBEspecialidadesItemStateChanged
 
@@ -125,15 +144,23 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
        String especialidadSeleccionada = (String) jCBEspecialidades.getSelectedItem();
        llenarTablaConEntrenadores(especialidadSeleccionada);
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
      
     private void llenarTablaConEntrenadores(String especialidad) {
    
-    EntrenadorData entrenadorData = new EntrenadorData(); 
-    List<Entrenador> entrenadores = entrenadorData.buscarEntrenadorPorEspecialidad(especialidad);
-    
-    
-    limpiarTabla();
-    
+   limpiarTabla();
+    List<Entrenador> entrenadores; 
+            String ele = (String) jCBEspecialidades.getSelectedItem();
+            
+          if(ele.equals("Todos")){
+              entrenadores = entrenadorData.listarEntrenadores();
+          } else {
+            
+            entrenadores = entrenadorData.buscarEntrenadorPorEspecialidad(especialidad);
+          }
     DefaultTableModel modelo = (DefaultTableModel) jT.getModel();
     for (Entrenador entrenador : entrenadores) {
         Object[] fila = {entrenador.getIdEntrenador(), entrenador.getDni(), entrenador.getNombre(), entrenador.getApellido(), entrenador.getEspecialidad()};
@@ -147,8 +174,10 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
     private void llenarComboBoxEspecialidades() {
      
         limpiarItemsComboBox();
-        List<String> especialidades = listarEspecialidades();
+        List<String> especialidades = entrenadorData.listarEspecialidades();
+        jCBEspecialidades.addItem("Todos");
         for (String especialidad : especialidades) {
+            
             jCBEspecialidades.addItem(especialidad);
         }
     }
@@ -160,27 +189,7 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
         }
     }
      
-     public List<String> listarEspecialidades(){
-     ArrayList<String> especialidades = new ArrayList<>();
-     String sql = "SELECT DISTINCT especialidad FROM entrenador WHERE estado = 1";
-        try{
-            
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-            String especialidad = rs.getString("especialidad");
-            especialidades.add(especialidad);
-            
-            }
-            ps.close();
-        
-        }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null, "error al acceder a la tabla");
-            System.out.println(ex.getMessage());
-        }
-        return especialidades;
-     
-     }
+   
       public void armarCabecera() {
         modelo.addColumn("idEntrenador");
         modelo.addColumn("Dni");
@@ -192,6 +201,7 @@ public class FormularioListasDeEntrenadores extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCBEspecialidades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
