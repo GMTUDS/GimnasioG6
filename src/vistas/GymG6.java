@@ -57,11 +57,6 @@ public class GymG6 extends javax.swing.JFrame {
                 jMSocioMouseClicked(evt);
             }
         });
-        jMSocio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMSocioActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMSocio);
 
         jMClases.setText("Clases");
@@ -90,11 +85,6 @@ public class GymG6 extends javax.swing.JFrame {
                 jMEntrenadoresMouseClicked(evt);
             }
         });
-        jMEntrenadores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMEntrenadoresActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMEntrenadores);
 
         jMMembresia.setText("Membresia");
@@ -104,11 +94,6 @@ public class GymG6 extends javax.swing.JFrame {
         jMAsistencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMAsistenciasMouseClicked(evt);
-            }
-        });
-        jMAsistencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMAsistenciasActionPerformed(evt);
             }
         });
         jMenuBar1.add(jMAsistencias);
@@ -139,35 +124,13 @@ public class GymG6 extends javax.swing.JFrame {
         jDesktopPane1.add(buscarClase);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSocioActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_jMSocioActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        AgregarModifClase agreModifClase = new AgregarModifClase();
+        AgregarModifClase1Pruebas agreModifClase = new AgregarModifClase1Pruebas();
         agreModifClase.setVisible(true);
         jDesktopPane1.add(agreModifClase);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEntrenadoresActionPerformed
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        Entrenadores formEntrenadores = new Entrenadores();
-        formEntrenadores.setVisible(true);
-        jDesktopPane1.add(formEntrenadores);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMEntrenadoresActionPerformed
-
-    private void jMAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAsistenciasActionPerformed
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        FormularioAsistencias formAsistencia = new FormularioAsistencias();
-        formAsistencia.setVisible(true);
-        jDesktopPane1.add(formAsistencia);  // TODO add your handling code here:
-    }//GEN-LAST:event_jMAsistenciasActionPerformed
 
     private void jMSocioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSocioMouseClicked
         // TODO add your handling code here:
