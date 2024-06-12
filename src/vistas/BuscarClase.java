@@ -38,9 +38,7 @@ public class BuscarClase extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
 
-        jLabel1.setText("nombre");
-
-        jTFNombre.setText("jTextField1");
+        jLabel1.setText("Nombre");
 
         jTClases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
