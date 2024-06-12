@@ -23,13 +23,13 @@ public class ClaseData {
         con = Conexion.getConexion();
     }
     
-    public void agregarClase(Clase clase, Entrenador entrenador) {
+    public void agregarClase(Clase clase) {
         String sql = "INSERT INTO clase (nombre, horario, idEntrenador, capacidad, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, clase.getNombre());
             ps.setTime(2, Time.valueOf(clase.getHorario()));
-            ps.setInt(3, entrenador.getIdEntrenador());
+            ps.setInt(3, clase.getEntrenador().getIdEntrenador());
             ps.setInt(4, clase.getCapacidad());
             ps.setBoolean(5, clase.isEstado());
             ps.executeUpdate();
@@ -266,4 +266,21 @@ public class ClaseData {
         }
         return clase;
     }
+    public List<String> listarNombresUnicosDeClases(){
+        ArrayList<String> nombres= new ArrayList<>();
+            String sql = "SELECT DISTINCT nombre FROM clase WHERE estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String nombreClase = rs.getString("nombre");
+                nombres.add(nombreClase);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla");
+            System.out.println(ex.getMessage());
+        }
+            return nombres;
+                    }
 }

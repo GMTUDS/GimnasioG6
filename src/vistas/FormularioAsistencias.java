@@ -4,6 +4,18 @@
  */
 package vistas;
 
+import accesoADatos.AsistenciaData;
+import accesoADatos.ClaseData;
+import accesoADatos.SocioData;
+import entidades.Asistencia;
+import entidades.Clase;
+import entidades.Socio;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author elise
@@ -13,8 +25,22 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
     /**
      * Creates new form Asistencias
      */
+    SocioData socioData = new SocioData();
+    ClaseData claseData = new ClaseData();
+    LocalDate fechaActual = LocalDate.now();
+    AsistenciaData asistenciaData = new AsistenciaData();
+    Asistencia asistencia = null;
+
+    private DefaultTableModel modelo;
+    Socio socio = null;
+    Clase clase = null;
+
     public FormularioAsistencias() {
         initComponents();
+        modelo = new DefaultTableModel();
+        jLFecha.setText(fechaActual.toString());
+        armarCabecera();
+        llenarCBClases();
     }
 
     /**
@@ -39,7 +65,7 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
         jCBHorario = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jT = new javax.swing.JTable();
-        jBGuardar = new javax.swing.JButton();
+        jBMarcarAsistencia = new javax.swing.JButton();
         jLFecha = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
 
@@ -58,12 +84,6 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
 
         jLControlAsistencia.setText("Control de Asistencia");
 
-        jTFdni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFdniActionPerformed(evt);
-            }
-        });
-
         jLDNI.setText("DNI");
 
         jBBuscar.setText("Buscar");
@@ -74,31 +94,42 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
         });
 
         jTFNyASocio.setText("Nombre y apellido del Socio");
-        jTFNyASocio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNyASocioActionPerformed(evt);
+
+        jCBNombreClase.setSelectedIndex(-1);
+        jCBNombreClase.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBNombreClaseItemStateChanged(evt);
             }
         });
-
-        jCBNombreClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLNombreClase.setText("Nombre de la Clase");
 
         jLHorario.setText("Horario");
 
-        jCBHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBHorario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBHorarioItemStateChanged(evt);
+            }
+        });
 
+        jT.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {}
             },
             new String [] {
-                "idClase", "Entrenador", "Capacidad"
+
             }
         ));
+        jT.setRowHeight(30);
         jScrollPane2.setViewportView(jT);
 
-        jBGuardar.setText("Guardar");
+        jBMarcarAsistencia.setText("Marcar Asistencia");
+        jBMarcarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMarcarAsistenciaActionPerformed(evt);
+            }
+        });
 
         jLFecha.setText("Fecha: 11/06/2024");
 
@@ -115,43 +146,43 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLNombreClase)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBNombreClase, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLHorario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(jLControlAsistencia)
                         .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jLFecha)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLDNI)
-                .addGap(18, 18, 18)
-                .addComponent(jTFdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLFecha)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLNombreClase)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCBNombreClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLHorario))
-                            .addComponent(jTFNyASocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBGuardar)
-                        .addGap(56, 56, 56)
-                        .addComponent(jBSalir)
-                        .addGap(34, 34, 34))))
+                                .addGap(126, 126, 126)
+                                .addComponent(jBMarcarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTFNyASocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLDNI)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTFdni, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jBBuscar)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,40 +203,106 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
                     .addComponent(jLNombreClase)
                     .addComponent(jLHorario)
                     .addComponent(jCBHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBGuardar)
+                    .addComponent(jBMarcarAsistencia)
                     .addComponent(jBSalir))
-                .addContainerGap())
+                .addGap(49, 49, 49))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFdniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFdniActionPerformed
-
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBBuscarActionPerformed
+        socio = socioData.buscarSocioPorDni(jTFdni.getText());
+        if (socio != null) {
+            jTFNyASocio.setText(socio.getNombre() + " " + socio.getApellido());
+        } else {
+            JOptionPane.showMessageDialog(this, "No existe el socio");
+        }
 
-    private void jTFNyASocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNyASocioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNyASocioActionPerformed
+    }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
+    private void jCBNombreClaseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBNombreClaseItemStateChanged
+        // TODO add your handling code here:
+//        borrarFila();
 
+        String nombreClase = (String) jCBNombreClase.getSelectedItem();
+        List<Clase> clasesHorarios = claseData.listarClasesPorNombre(nombreClase);
+        limpiarItemsComboBox();
+        for (Clase clasesHorario : clasesHorarios) {
+            jCBHorario.addItem(clasesHorario.getHorario());
+        }
+        jCBHorario.setSelectedIndex(0);
+    }//GEN-LAST:event_jCBNombreClaseItemStateChanged
+
+    private void jCBHorarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBHorarioItemStateChanged
+        // TODO add your handling code here:
+//        borrarFila();
+
+        if (jCBHorario.getSelectedItem() != null) {
+            borrarFila();
+            clase = claseData.buscarClasePorHorario((LocalTime) jCBHorario.getSelectedItem());
+
+            String entrenador = clase.getEntrenador().getNombre() + " " + clase.getEntrenador().getApellido();
+
+            modelo.addRow(new Object[]{clase.getIdClase(), entrenador, clase.getCapacidad()});
+        }
+
+    }//GEN-LAST:event_jCBHorarioItemStateChanged
+
+    private void jBMarcarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMarcarAsistenciaActionPerformed
+        // TODO add your handling code here:
+        if (socio == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un socio");
+        } else if (clase == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una clase");
+        }else{
+            asistencia = new Asistencia(socio, clase, fechaActual);
+            asistenciaData.agregarAsistencia(asistencia);
+        }
+
+//        asistencia.setClase(clase);
+//        asistencia.setFechaAsistencia(fechaActual);
+//        asistencia.setSocio(socio);
+    }//GEN-LAST:event_jBMarcarAsistenciaActionPerformed
+    private void limpiarItemsComboBox() {
+
+        for (int i = jCBHorario.getItemCount() - 1; i >= 0; i--) {
+            jCBHorario.removeItemAt(i);
+        }
+    }
+    private void llenarCBClases(){
+        List<String> nombresDeClases = claseData.listarNombresUnicosDeClases();
+        for (String nombresDeClase : nombresDeClases) {
+            jCBNombreClase.addItem(nombresDeClase);
+        }
+    }
+    private void borrarFila() {
+        if (jT.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+    }
+
+    public void armarCabecera() {
+        modelo.addColumn("idClase");
+        modelo.addColumn("Entrenador");
+        modelo.addColumn("Capacidad");
+//        modelo.addColumn("Especialidad");
+        jT.setModel(modelo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
-    private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBMarcarAsistencia;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JComboBox<String> jCBHorario;
+    private javax.swing.JComboBox<LocalTime> jCBHorario;
     private javax.swing.JComboBox<String> jCBNombreClase;
     private javax.swing.JLabel jLControlAsistencia;
     private javax.swing.JLabel jLDNI;

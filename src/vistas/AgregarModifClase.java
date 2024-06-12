@@ -214,14 +214,14 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "El nombre no pertenece a un entrenador,activo");
                 return;
             }
-            LocalTime horario=jCBHorario.getSelectedItem();
+//            LocalTime horario=jCBHorario.getSelectedItem();
                     
             boolean estado = jCBEstado.isSelected();
                 
                 
             if(clase==null){
-                clase=new Clase(nombre,Entrenador,horario,capacidad, estado);
-                claseData.agregarClase(Clase clase, Entrenador entrenador);
+//                clase=new Clase(nombre,Entrenador,horario,capacidad, estado);
+//                claseData.agregarClase(Clase clase, Entrenador entrenador);
             }
          
         }catch(NumberFormatException e){
