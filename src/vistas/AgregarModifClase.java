@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 public class AgregarModifClase extends javax.swing.JInternalFrame {
 
     ClaseData claseData = new ClaseData();
-    Clase clase=null;
+    Clase clase = null;
+
     public AgregarModifClase() {
         initComponents();
     }
@@ -177,72 +178,71 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        Entrenador entrenador=null;
+        Entrenador entrenador = null;
         try {
-        String nombreCla= jTFNombre.getText();
-        clase=claseData.buscarClasePorNombre(nombreCla);
-        
-        if(clase!= null){
-            entrenador=new Entrenador();
-                entrenador=clase.getEntrenador();
+            String nombreCla = jTFNombre.getText();
+            clase = claseData.buscarClasePorNombre(nombreCla);
+
+            if (clase != null) {
+                entrenador = new Entrenador();
+                entrenador = clase.getEntrenador();
                 jTFEntrenador.setText(entrenador.getNombre());
                 jCBHorario.setSelectedItem(clase.getHorario());
-                        int capac=clase.getCapacidad();
-                jTFCapacidad.setText(" "+capac);
+                int capac = clase.getCapacidad();
+                jTFCapacidad.setText(" " + capac);
                 jCBEstado.setSelected(clase.isEstado());
-            }else{
-            JOptionPane.showMessageDialog(this, "No existe clase con ese nombre");
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe clase con ese nombre");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Exception" + ex.getMessage());
+            ex.printStackTrace();
         }
-       }catch(Exception ex){
-           JOptionPane.showMessageDialog(this,"Exception"+ex.getMessage());
-           ex.printStackTrace();
-       }
-    
+
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         limpiarCampos();
-        clase=null;
-        Entrenador entrenador=null;
-        EntrenadorData entrenadorDat=null;
-         try{
-            String nombre=jTFNombre.getText();
-            String nombreEntrenador=jTFEntrenador.getText();
-             entrenador=entrenadorDat.buscarEntrenadorPorNombre(nombreEntrenador);
-            
-            if(entrenador==null ){
+        clase = null;
+        Entrenador entrenador = null;
+        EntrenadorData entrenadorDat = null;
+        try {
+            String nombre = jTFNombre.getText();
+            String nombreEntrenador = jTFEntrenador.getText();
+            entrenador = entrenadorDat.buscarEntrenadorPorNombre(nombreEntrenador);
+
+            if (entrenador == null) {
                 JOptionPane.showMessageDialog(this, "El nombre no pertenece a un entrenador,activo");
                 return;
             }
 //            LocalTime horario=jCBHorario.getSelectedItem();
-                    
+
             boolean estado = jCBEstado.isSelected();
-                
-                
-            if(clase==null){
+
+            if (clase == null) {
 //                clase=new Clase(nombre,Entrenador,horario,capacidad, estado);
 //                claseData.agregarClase(Clase clase, Entrenador entrenador);
             }
-         
-        }catch(NumberFormatException e){
-           JOptionPane.showMessageDialog(this,"ingrese un nombre valido");
-       }catch(Exception ex){
-           JOptionPane.showMessageDialog(this,"Exception"+ex.getMessage());
-           ex.printStackTrace();
-    }                       
-       
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ingrese un nombre valido");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Exception" + ex.getMessage());
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBSAlirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSAlirActionPerformed
-            dispose();
+        dispose();
     }//GEN-LAST:event_jBSAlirActionPerformed
-private void limpiarCampos(){
-            jTFNombre.setText("");
-            jTFEntrenador.setText("");
-            jCBHorario.setSelectedItem("");
-            jCBEstado.setSelected(true);
-        
-            }
+    private void limpiarCampos() {
+        jTFNombre.setText("");
+        jTFEntrenador.setText("");
+        jCBHorario.setSelectedItem("");
+        jCBEstado.setSelected(true);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBModificar;

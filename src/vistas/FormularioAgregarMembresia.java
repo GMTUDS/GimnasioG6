@@ -1,15 +1,23 @@
 package vistas;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elise
  */
 public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
+   
+    private Connection connection;
 
     /**
      * Creates new form FormularioAgregarMembresia
      */
-    public FormularioAgregarMembresia() {
+    public FormularioAgregarMembresia(Connection connection) {
+        this.connection = connection;
         initComponents();
     }
 
@@ -22,36 +30,41 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jTFDNISocio = new javax.swing.JTextField();
+        jTFPases = new javax.swing.JTextField();
+        jTFCostos = new javax.swing.JTextField();
+        jLDNISocio = new javax.swing.JLabel();
+        jLPases = new javax.swing.JLabel();
+        jLFechaInicio = new javax.swing.JLabel();
+        jLAgregarMembresia = new javax.swing.JLabel();
+        jBAgregar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+        jLCostos = new javax.swing.JLabel();
+        jDCFechaInicio = new com.toedter.calendar.JDateChooser();
 
-        jLabel1.setText("DNI Socio");
+        jLDNISocio.setText("DNI Socio");
 
-        jLabel2.setText("Pases");
+        jLPases.setText("Pases");
 
-        jLabel3.setText("Fecha Inicio");
+        jLFechaInicio.setText("Fecha Inicio");
 
-        jLabel4.setText("Agregar Membresia");
+        jLAgregarMembresia.setText("Agregar Membresia");
 
-        jButton1.setText("Agregar");
-
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBAgregarActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Costos");
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+
+        jLCostos.setText("Costos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,82 +74,116 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jLabel4))
+                        .addComponent(jLAgregarMembresia))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                    .addComponent(jLDNISocio)
+                                    .addComponent(jLPases))
                                 .addGap(59, 59, 59)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField1)))
+                                    .addComponent(jTFPases)
+                                    .addComponent(jTFDNISocio)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLCostos)
+                                    .addComponent(jLFechaInicio))
                                 .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTextField3))))))
+                                        .addComponent(jDCFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 109, Short.MAX_VALUE))
+                                    .addComponent(jTFCostos)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAgregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBSalir)))))
                 .addGap(46, 46, 46))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel4)
+                .addComponent(jLAgregarMembresia)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLDNISocio)
+                    .addComponent(jTFDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jTFPases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLPases))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLCostos)
+                    .addComponent(jTFCostos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLFechaInicio)
+                    .addComponent(jDCFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jBAgregar)
+                    .addComponent(jBSalir))
                 .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBSalirActionPerformed
 
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        agregarMembresia();
+    }//GEN-LAST:event_jBAgregarActionPerformed
 
+     private void agregarMembresia() {
+        String dniSocio = jTFDNISocio.getText();
+        String pases = jTFPases.getText();
+        String costos = jTFCostos.getText();
+        java.util.Date fechaInicio = jDCFechaInicio.getDate();
+        
+        if (dniSocio.isEmpty() || pases.isEmpty() || costos.isEmpty() || fechaInicio == null) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.");
+            return;
+        }
+
+        String query = "INSERT INTO Membresía (ID_Socio, Tipo, Fecha_Inicio, Fecha_Fin) VALUES (?, ?, ?, ?)";
+        
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, dniSocio);
+            ps.setString(2, pases);
+            ps.setDate(3, new java.sql.Date(fechaInicio.getTime()));
+            ps.setString(4, costos);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Membresia agregada exitosamente.");
+            limpiarCampos();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al agregar membresia: " + ex.getMessage());
+        }
+    }
+    
+    private void limpiarCampos() {
+        jTFDNISocio.setText("");
+        jTFPases.setText("");
+        jTFCostos.setText("");
+        jDCFechaInicio.setDate(null);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBSalir;
+    private com.toedter.calendar.JDateChooser jDCFechaInicio;
+    private javax.swing.JLabel jLAgregarMembresia;
+    private javax.swing.JLabel jLCostos;
+    private javax.swing.JLabel jLDNISocio;
+    private javax.swing.JLabel jLFechaInicio;
+    private javax.swing.JLabel jLPases;
+    private javax.swing.JTextField jTFCostos;
+    private javax.swing.JTextField jTFDNISocio;
+    private javax.swing.JTextField jTFPases;
     // End of variables declaration//GEN-END:variables
 }
