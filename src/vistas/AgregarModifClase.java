@@ -4,15 +4,21 @@
  */
 package vistas;
 
+import accesoADatos.ClaseData;
+import accesoADatos.EntrenadorData;
+import entidades.Clase;
+import entidades.Entrenador;
+import java.time.LocalTime;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elise
  */
 public class AgregarModifClase extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Clases
-     */
+    ClaseData claseData = new ClaseData();
+    Clase clase=null;
     public AgregarModifClase() {
         initComponents();
     }
@@ -37,18 +43,13 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTCapacidad = new javax.swing.JTextField();
+        jTFCapacidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jBNuevo = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
         jBSAlir = new javax.swing.JButton();
         jCBEstado = new javax.swing.JCheckBox();
         jCBHorario = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
 
@@ -63,6 +64,11 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
         jTFNombre.setText("jTextField1");
 
         jBbuscar.setText("Buscar");
+        jBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarActionPerformed(evt);
+            }
+        });
 
         jTFEntrenador.setText("jTextField1");
 
@@ -70,27 +76,27 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Capacidad");
 
-        jTCapacidad.setText("jTextField3");
+        jTFCapacidad.setText("jTextField3");
 
         jLabel7.setText("Estado");
 
         jBNuevo.setText("Nuevo");
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBModificar.setText("Modificar");
 
         jBSAlir.setText("Salir");
+        jBSAlir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSAlirActionPerformed(evt);
+            }
+        });
 
         jCBHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,16 +143,10 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCBEstado)
                             .addComponent(jCBHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -180,27 +180,88 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
                                     .addComponent(jBNuevo)
                                     .addComponent(jBModificar)
                                     .addComponent(jBSAlir))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jCBEstado)
-                        .addGap(284, 284, 284)))
-                .addContainerGap())
+                        .addGap(290, 290, 290))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+        Entrenador entrenador=null;
+        try {
+        String nombreCla= jTFNombre.getText();
+        clase=claseData.buscarClasePorNombre(nombreCla);
+        
+        if(clase!= null){
+            entrenador=new Entrenador();
+                entrenador=clase.getEntrenador();
+                jTFEntrenador.setText(entrenador.getNombre());
+                jCBHorario.setSelectedItem(clase.getHorario());
+                        int capac=clase.getCapacidad();
+                jTFCapacidad.setText(" "+capac);
+                jCBEstado.setSelected(clase.isEstado());
+            }else{
+            JOptionPane.showMessageDialog(this, "No existe clase con ese nombre");
+        }
+       }catch(Exception ex){
+           JOptionPane.showMessageDialog(this,"Exception"+ex.getMessage());
+           ex.printStackTrace();
+       }
+    
+    }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        limpiarCampos();
+        clase=null;
+        Entrenador entrenador=null;
+        EntrenadorData entrenadorDat=null;
+         try{
+            String nombre=jTFNombre.getText();
+            String nombreEntrenador=jTFEntrenador.getText();
+             entrenador=entrenadorDat.buscarEntrenadorPorNombre(nombreEntrenador);
+            
+            if(entrenador==null ){
+                JOptionPane.showMessageDialog(this, "El nombre no pertenece a un entrenador,activo");
+                return;
+            }
+            LocalTime horario=jCBHorario.getSelectedItem();
+                    
+            boolean estado = jCBEstado.isSelected();
+                
+                
+            if(clase==null){
+                clase=new Clase(nombre,Entrenador,horario,capacidad, estado);
+                claseData.agregarClase(Clase clase, Entrenador entrenador);
+            }
+         
+        }catch(NumberFormatException e){
+           JOptionPane.showMessageDialog(this,"ingrese un nombre valido");
+       }catch(Exception ex){
+           JOptionPane.showMessageDialog(this,"Exception"+ex.getMessage());
+           ex.printStackTrace();
+    }                       
+       
+    }//GEN-LAST:event_jBNuevoActionPerformed
+
+    private void jBSAlirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSAlirActionPerformed
+                   dispose();
+    }//GEN-LAST:event_jBSAlirActionPerformed
+private void limpiarCampos(){
+            jTFNombre.setText("");
+            jTFEntrenador.setText("");
+            jCBHorario.setSelectedItem("");
+            jCBEstado.setSelected(true);
+        
+            }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBModificar;
@@ -218,13 +279,8 @@ public class AgregarModifClase extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTCapacidad;
+    private javax.swing.JTextField jTFCapacidad;
     private javax.swing.JTextField jTFEntrenador;
     private javax.swing.JTextField jTFNombre;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
