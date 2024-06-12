@@ -33,6 +33,7 @@ public class GymG6 extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMEntrenadores = new javax.swing.JMenu();
+        jMIListarEntrenadores = new javax.swing.JMenuItem();
         jMMembresia = new javax.swing.JMenu();
         jMAsistencias = new javax.swing.JMenu();
 
@@ -85,6 +86,10 @@ public class GymG6 extends javax.swing.JFrame {
                 jMEntrenadoresMouseClicked(evt);
             }
         });
+
+        jMIListarEntrenadores.setText("Listas de Entrenadores");
+        jMEntrenadores.add(jMIListarEntrenadores);
+
         jMenuBar1.add(jMEntrenadores);
 
         jMMembresia.setText("Membresia");
@@ -199,6 +204,7 @@ public class GymG6 extends javax.swing.JFrame {
     private javax.swing.JMenu jMAsistencias;
     private javax.swing.JMenu jMClases;
     private javax.swing.JMenu jMEntrenadores;
+    private javax.swing.JMenuItem jMIListarEntrenadores;
     private javax.swing.JMenu jMMembresia;
     private javax.swing.JMenu jMSocio;
     private javax.swing.JMenuBar jMenuBar1;

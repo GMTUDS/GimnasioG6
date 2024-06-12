@@ -50,6 +50,13 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMEntrenadoresMouseClicked"/>
           </Events>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMIListarEntrenadores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listas de Entrenadores"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMMembresia">
           <Properties>
