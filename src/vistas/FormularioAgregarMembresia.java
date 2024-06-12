@@ -1,8 +1,16 @@
 package vistas;
 
+import accesoADatos.MembresiaData;
+import accesoADatos.SocioData;
+import entidades.Membresia;
+import entidades.Socio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,14 +18,19 @@ import javax.swing.JOptionPane;
  * @author elise
  */
 public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
-   
-    private Connection connection;
+
+    private MembresiaData membresiad;
+    private Membresia membresia = null;
+    private SocioData sociod;
+    private Socio socio = null;
+
     /**
      * Creates new form FormularioAgregarMembresia
      */
     public FormularioAgregarMembresia() {
-        this.connection = connection;
         initComponents();
+        membresiad = new MembresiaData();
+        sociod = new SocioData();
     }
 
     /**
@@ -50,11 +63,6 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         jLAgregarMembresia.setText("Agregar Membresia");
 
         jBAgregar.setText("Agregar");
-        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAgregarActionPerformed(evt);
-            }
-        });
 
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -136,42 +144,30 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        agregarMembresia();
+        String dni = jTFDNISocio.getText();
+        socio = sociod.buscarSocioPorDni(dni);
+        int pases = Integer.parseInt(jTFPases.getText());
+        double costos = Double.parseDouble(jTFCostos.getText());
+        java.util.Date fechaInicio = jDCFechaInicio.getDate();
+        LocalDate fecha = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaFin = fecha.plusDays(30);
+        membresia = new Membresia();
+        membresia.setSocio(socio);
+        membresia.setCantidadPases(pases);
+        membresia.setCosto(costos);
+        membresia.setFechaInicio(fecha);
+        membresia.setFechaFin(fechaFin);
+        membresiad.agregarMembresia(membresia);
+
     }//GEN-LAST:event_jBAgregarActionPerformed
 
-     private void agregarMembresia() {
-        String dniSocio = jTFDNISocio.getText();
-        String pases = jTFPases.getText();
-        String costos = jTFCostos.getText();
-        java.util.Date fechaInicio = jDCFechaInicio.getDate();
-        
-        if (dniSocio.isEmpty() || pases.isEmpty() || costos.isEmpty() || fechaInicio == null) {
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.");
-            return;
-        }
-
-        String query = "INSERT INTO Membresía (ID_Socio, Tipo, Fecha_Inicio, Fecha_Fin) VALUES (?, ?, ?, ?)";
-        
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setString(1, dniSocio);
-            ps.setString(2, pases);
-            ps.setDate(3, new java.sql.Date(fechaInicio.getTime()));
-            ps.setString(4, costos);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Membresia agregada exitosamente.");
-            limpiarCampos();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al agregar membresia: " + ex.getMessage());
-        }
-    }
-    
     private void limpiarCampos() {
         jTFDNISocio.setText("");
         jTFPases.setText("");
         jTFCostos.setText("");
         jDCFechaInicio.setDate(null);
-
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBSalir;

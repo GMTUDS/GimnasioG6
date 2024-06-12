@@ -155,7 +155,7 @@ public class MembresiaData {
             ps.setInt(1, membre.getSocio().getIdSocio());
             ps.setInt(2, membre.getCantidadPases());
             ps.setDate(3, Date.valueOf(membre.getFechaInicio()));
-            ps.setDate(4, Date.valueOf(membre.getFechaInicio().plusDays(30)));
+            ps.setDate(4, Date.valueOf(membre.getFechaFin()));
             ps.setDouble(5, membre.getCosto());
             ps.setBoolean(6, membre.isEstado());
             ps.executeUpdate();
