@@ -6,7 +6,11 @@ package vistas;
 
 import accesoADatos.MembresiaData;
 import entidades.Membresia;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,10 +20,9 @@ import javax.swing.table.DefaultTableModel;
 public class FormularioMembresia extends javax.swing.JInternalFrame {
        private DefaultTableModel modelo=new DefaultTableModel();
       private MembresiaData membresiaData;
-    /**
-     * Creates new form Membresia
-     */
+       FondoPanel fondo = new FondoPanel();
     public FormularioMembresia() {
+        this.setContentPane(fondo);
         membresiaData=new MembresiaData();
         initComponents();
           armarCabecera();
@@ -164,6 +167,18 @@ public class FormularioMembresia extends javax.swing.JInternalFrame {
            modelo.removeRow(i);
        }
    }
+   class FondoPanel extends JPanel {
+        private Image imagen;
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/recursos/gym5.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+            
+            
+        
+    }}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBDarDeBaja;
