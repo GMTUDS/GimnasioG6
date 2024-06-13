@@ -86,7 +86,7 @@ public class GymG6 extends javax.swing.JFrame {
         });
         jMClases.add(jMenuItem1);
 
-        jMenuItem2.setText("Modificar clase");
+        jMenuItem2.setText("Agregar Clase");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
