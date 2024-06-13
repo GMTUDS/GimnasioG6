@@ -74,10 +74,13 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         jTFDNISocio.setBackground(java.awt.Color.darkGray);
+        jTFDNISocio.setForeground(new java.awt.Color(255, 255, 255));
 
         jTFPases.setBackground(java.awt.Color.darkGray);
+        jTFPases.setForeground(new java.awt.Color(255, 255, 255));
 
         jTFCostos.setBackground(java.awt.Color.darkGray);
+        jTFCostos.setForeground(new java.awt.Color(255, 255, 255));
 
         jLDNISocio.setForeground(new java.awt.Color(255, 255, 255));
         jLDNISocio.setText("DNI Socio");
@@ -109,7 +112,7 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         jLCostos.setText("Costos");
 
         jDCFechaInicio.setBackground(java.awt.Color.darkGray);
-        jDCFechaInicio.setForeground(new java.awt.Color(153, 153, 153));
+        jDCFechaInicio.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
