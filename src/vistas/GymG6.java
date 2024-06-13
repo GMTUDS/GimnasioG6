@@ -46,6 +46,9 @@ public class GymG6 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jDesktopPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jDesktopPane1.setToolTipText("");
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -57,6 +60,9 @@ public class GymG6 extends javax.swing.JFrame {
             .addGap(0, 278, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setBorder(BorderFactory.createTitledBorder("Menú Gym Hub"));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setToolTipText("");
 
         jMSocio.setText("Socio");
