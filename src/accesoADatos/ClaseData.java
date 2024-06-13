@@ -72,6 +72,32 @@ public class ClaseData {
         }
         return clases;
     }
+    public List<Clase> listarClasesActivas() {
+        List<Clase> clases = new ArrayList<>();
+        String sql = "SELECT * FROM clase WHERE estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Clase clase = new Clase();
+                clase.setIdClase(rs.getInt("idClase"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+//                clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Entrenador entrenador = new Entrenador();
+                entrenador = entreData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setEntrenador(entrenador);
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
+                clases.add(clase);
+           }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar las clases");
+            System.out.println(ex.getMessage());
+        }
+        return clases;
+    }
 
     public Clase buscarClasePorNombre(String nombre) {
         Clase clase = null;

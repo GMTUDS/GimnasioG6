@@ -70,7 +70,7 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         jLCostos = new javax.swing.JLabel();
         jDCFechaInicio = new com.toedter.calendar.JDateChooser();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         jTFDNISocio.setBackground(java.awt.Color.darkGray);
@@ -98,6 +98,11 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         jBAgregar.setBackground(new java.awt.Color(0, 0, 0));
         jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setBackground(new java.awt.Color(0, 0, 0));
         jBSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,6 +204,7 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         membresia.setCosto(costos);
         membresia.setFechaInicio(fecha);
         membresia.setFechaFin(fechaFin);
+        membresia.setEstado(true);
         membresiad.agregarMembresia(membresia);
 
     }//GEN-LAST:event_jBAgregarActionPerformed

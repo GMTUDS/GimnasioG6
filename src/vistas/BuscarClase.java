@@ -21,10 +21,12 @@ import javax.swing.table.DefaultTableModel;
 public class BuscarClase extends javax.swing.JInternalFrame {
     FondoPanel fondo = new FondoPanel();
      private DefaultTableModel modelo;
+     private ClaseData claseData;
     public BuscarClase() {
         this.setContentPane(fondo);
         initComponents();
          modelo = new DefaultTableModel();
+         claseData = new ClaseData();
          armarCabecera();
     }
 
@@ -44,6 +46,7 @@ public class BuscarClase extends javax.swing.JInternalFrame {
         jBbuscarNombre = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -87,34 +90,43 @@ public class BuscarClase extends javax.swing.JInternalFrame {
             }
         });
 
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(314, 314, 314))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBEliminar)
+                        .addGap(53, 53, 53)
                         .addComponent(jBSalir)
                         .addGap(355, 355, 355))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(220, 220, 220))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBbuscarNombre)
-                        .addGap(252, 252, 252))))
+                        .addGap(252, 252, 252))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addContainerGap(128, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -125,7 +137,9 @@ public class BuscarClase extends javax.swing.JInternalFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jBSalir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBSalir)
+                    .addComponent(jBEliminar))
                 .addGap(100, 100, 100))
         );
 
@@ -149,6 +163,13 @@ public class BuscarClase extends javax.swing.JInternalFrame {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada= jTClases.getSelectedRow();
+        int idClase = (Integer) modelo.getValueAt(filaSeleccionada, 0);
+        claseData.eliminarClase(idClase);
+    }//GEN-LAST:event_jBEliminarActionPerformed
      private void borrarFilaTabla() {
         int indice = modelo.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {
@@ -173,6 +194,7 @@ public class BuscarClase extends javax.swing.JInternalFrame {
    
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBSalir;
     private javax.swing.JButton jBbuscarNombre;
     private javax.swing.JLabel jLabel1;

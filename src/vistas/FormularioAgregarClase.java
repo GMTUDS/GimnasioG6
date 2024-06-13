@@ -225,7 +225,7 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
     }
     public void borrarHorariosOcupados() {
             
-        List<Clase> clases = claseData.listarClases();
+        List<Clase> clases = claseData.listarClasesActivas();
             for (Clase clase1 : clases) {
                 jCBHorarios.removeItem(clase1.getHorario());
             }
