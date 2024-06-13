@@ -321,6 +321,7 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void limpiar() {
+        socio = null;
         jTFApellido.setText("");
         jTFNombre.setText("");
         jTFCorreo.setText("");
