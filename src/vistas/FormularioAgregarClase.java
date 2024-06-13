@@ -110,6 +110,8 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Estado");
 
+        jBNuevo.setBackground(new java.awt.Color(0, 0, 0));
+        jBNuevo.setForeground(new java.awt.Color(255, 255, 255));
         jBNuevo.setText("Nuevo");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +119,8 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
             }
         });
 
+        jBAgregar.setBackground(new java.awt.Color(0, 0, 0));
+        jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +128,8 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
             }
         });
 
+        jBSAlir.setBackground(new java.awt.Color(0, 0, 0));
+        jBSAlir.setForeground(new java.awt.Color(255, 255, 255));
         jBSAlir.setText("Salir");
         jBSAlir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
