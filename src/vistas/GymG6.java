@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vistas;
 
 import accesoADatos.MembresiaData;
@@ -14,13 +10,15 @@ import javax.swing.ImageIcon;
  * @author elise
  */
 public class GymG6 extends javax.swing.JFrame {
-     MembresiaData membresiaData;
+
+    MembresiaData membresiaData;
+
     /**
      * Creates new form GymG6
      */
     public GymG6() {
         initComponents();
-        membresiaData=new MembresiaData();
+        membresiaData = new MembresiaData();
         membresiaData.modificarMembresiasVencidas();
     }
 
@@ -50,20 +48,22 @@ public class GymG6 extends javax.swing.JFrame {
         jMIFormularioMembresia = new javax.swing.JMenuItem();
         jMIAgregarMembresia = new javax.swing.JMenuItem();
         jMAsistencias = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 700));
 
-        jDesktopPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu Gym Hub"));
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 577, Short.MAX_VALUE)
         );
 
         jMenuBar1.setToolTipText("");
@@ -144,6 +144,14 @@ public class GymG6 extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMAsistencias);
 
+        jMenu1.setText("Salir");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
         jMenuBar1.getAccessibleContext().setAccessibleParent(this);
 
@@ -151,11 +159,11 @@ public class GymG6 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         jDesktopPane1.getAccessibleContext().setAccessibleName("");
@@ -199,7 +207,7 @@ public class GymG6 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMAsistenciasMouseClicked
 
     private void jMIFormularioMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioMembresiaActionPerformed
-         jDesktopPane1.removeAll();
+        jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
         FormularioMembresia formMembresia = new FormularioMembresia();
         formMembresia.setVisible(true);
@@ -216,21 +224,25 @@ public class GymG6 extends javax.swing.JFrame {
 
     private void jMIListarEntrenadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListarEntrenadoresActionPerformed
         jDesktopPane1.removeAll();
-      jDesktopPane1.repaint();
-       FormularioListasDeEntrenadores formMateria=new FormularioListasDeEntrenadores();
-       formMateria.setVisible(true);
-      jDesktopPane1.add(formMateria);
-       
-      
+        jDesktopPane1.repaint();
+        FormularioListasDeEntrenadores formMateria = new FormularioListasDeEntrenadores();
+        formMateria.setVisible(true);
+        jDesktopPane1.add(formMateria);
+
+
     }//GEN-LAST:event_jMIListarEntrenadoresActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         jDesktopPane1.removeAll();
-      jDesktopPane1.repaint();
-       FormularioEntrenadores formentrena=new FormularioEntrenadores();
-       formentrena.setVisible(true);
-      jDesktopPane1.add(formentrena);
+        jDesktopPane1.repaint();
+        FormularioEntrenadores formentrena = new FormularioEntrenadores();
+        formentrena.setVisible(true);
+        jDesktopPane1.add(formentrena);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -266,8 +278,8 @@ public class GymG6 extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMAsistencias;
@@ -278,6 +290,7 @@ public class GymG6 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIListarEntrenadores;
     private javax.swing.JMenu jMMembresia;
     private javax.swing.JMenu jMSocio;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

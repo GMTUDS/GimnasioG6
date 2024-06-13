@@ -61,14 +61,15 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
 
         jTextField7.setText("jTextField7");
 
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
         jLSocio.setBackground(new java.awt.Color(0, 0, 0));
-        jLSocio.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
-        jLSocio.setForeground(new java.awt.Color(255, 255, 255));
+        jLSocio.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLSocio.setForeground(new java.awt.Color(153, 153, 153));
         jLSocio.setText("Formulario Socio");
-        jLSocio.setOpaque(true);
 
         jLni.setBackground(new java.awt.Color(0, 0, 0));
-        jLni.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLni.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLni.setForeground(new java.awt.Color(255, 255, 255));
         jLni.setText("Dni");
         jLni.setOpaque(true);
@@ -80,7 +81,8 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        jBGuardar.setForeground(new java.awt.Color(153, 153, 153));
+        jBGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        jBGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,15 +90,19 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
             }
         });
 
+        jBEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBEliminar.setText("Eliminar");
         jBEliminar.setEnabled(false);
+        jBEliminar.setOpaque(true);
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
             }
         });
 
-        jBNuevo.setForeground(new java.awt.Color(153, 153, 153));
+        jBNuevo.setBackground(new java.awt.Color(0, 0, 0));
+        jBNuevo.setForeground(new java.awt.Color(255, 255, 255));
         jBNuevo.setText("Nuevo");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,37 +111,37 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
         });
 
         jLNombre.setBackground(new java.awt.Color(0, 0, 0));
-        jLNombre.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLNombre.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLNombre.setForeground(new java.awt.Color(255, 255, 255));
         jLNombre.setText("Nombre");
         jLNombre.setOpaque(true);
 
         jLApellido.setBackground(new java.awt.Color(0, 0, 0));
-        jLApellido.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLApellido.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLApellido.setForeground(new java.awt.Color(255, 255, 255));
         jLApellido.setText("Apellido");
         jLApellido.setOpaque(true);
 
         jLTelefono.setBackground(new java.awt.Color(0, 0, 0));
-        jLTelefono.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLTelefono.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLTelefono.setForeground(new java.awt.Color(255, 255, 255));
         jLTelefono.setText("Telefono");
         jLTelefono.setOpaque(true);
 
         jLCorreo.setBackground(new java.awt.Color(0, 0, 0));
-        jLCorreo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLCorreo.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLCorreo.setForeground(new java.awt.Color(255, 255, 255));
         jLCorreo.setText("Correo");
         jLCorreo.setOpaque(true);
 
         jLEstado.setBackground(new java.awt.Color(0, 0, 0));
-        jLEstado.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLEstado.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLEstado.setForeground(new java.awt.Color(255, 255, 255));
         jLEstado.setText("Estado");
         jLEstado.setOpaque(true);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Edad");
         jLabel1.setOpaque(true);
@@ -144,7 +150,8 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
         jChkBEstado.setSelected(true);
         jChkBEstado.setText("Activo");
 
-        jBSalir.setForeground(new java.awt.Color(153, 153, 153));
+        jBSalir.setBackground(new java.awt.Color(0, 0, 0));
+        jBSalir.setForeground(new java.awt.Color(255, 255, 255));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,71 +164,52 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(167, 167, 167)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jLSocio))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
                         .addComponent(jBNuevo)
                         .addGap(193, 193, 193)
                         .addComponent(jBSalir))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(84, 84, 84)
+                        .addComponent(jBGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBEliminar))
+                    .addComponent(jLTelefono)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(240, 240, 240))
+                                .addComponent(jLCorreo)
+                                .addComponent(jLEstado)
+                                .addComponent(jLabel1))
+                            .addGap(79, 79, 79)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTFEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLTelefono)
-                                    .addGap(221, 221, 221)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLApellido)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTFApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLCorreo)
-                                                .addComponent(jLEstado))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(103, 103, 103)
-                                                    .addComponent(jChkBEstado))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(79, 79, 79)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jTFEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(jBGuardar)
-                                                            .addGap(18, 18, 18)
-                                                            .addComponent(jBEliminar)))))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLNombre)
-                                            .addComponent(jLni))
-                                        .addGap(76, 76, 76)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTFDni)
-                                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)))
-                        .addComponent(jBBuscar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jTFDni, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jBBuscar))
+                                .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTFApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jChkBEstado)
+                                .addComponent(jLSocio)))
+                        .addComponent(jLni, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
                 .addComponent(jLSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLni)
                     .addComponent(jTFDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBBuscar))
+                    .addComponent(jBBuscar)
+                    .addComponent(jLni))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNombre)
@@ -246,13 +234,13 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBGuardar)
                     .addComponent(jBEliminar)
                     .addComponent(jBNuevo)
                     .addComponent(jBSalir))
-                .addGap(23, 23, 23))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
