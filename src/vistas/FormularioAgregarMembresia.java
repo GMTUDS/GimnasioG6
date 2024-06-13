@@ -4,6 +4,8 @@ import accesoADatos.MembresiaData;
 import accesoADatos.SocioData;
 import entidades.Membresia;
 import entidades.Socio;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,14 +13,17 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author elise
  */
 public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
-
+    
+    FondoPanel fondo = new FondoPanel();
     private MembresiaData membresiad;
     private Membresia membresia = null;
     private SocioData sociod;
@@ -28,11 +33,22 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
      * Creates new form FormularioAgregarMembresia
      */
     public FormularioAgregarMembresia() {
+        this.setContentPane(fondo);
         initComponents();
         membresiad = new MembresiaData();
         sociod = new SocioData();
     }
-
+    
+    class FondoPanel extends JPanel {
+        private Image imagen;
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/recursos/123123123.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        }}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,16 +70,33 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
         jLCostos = new javax.swing.JLabel();
         jDCFechaInicio = new com.toedter.calendar.JDateChooser();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        setMinimumSize(new java.awt.Dimension(600, 400));
+
+        jTFDNISocio.setBackground(java.awt.Color.darkGray);
+
+        jTFPases.setBackground(java.awt.Color.darkGray);
+
+        jTFCostos.setBackground(java.awt.Color.darkGray);
+
+        jLDNISocio.setForeground(new java.awt.Color(255, 255, 255));
         jLDNISocio.setText("DNI Socio");
 
+        jLPases.setForeground(new java.awt.Color(255, 255, 255));
         jLPases.setText("Pases");
 
+        jLFechaInicio.setForeground(new java.awt.Color(255, 255, 255));
         jLFechaInicio.setText("Fecha Inicio");
 
+        jLAgregarMembresia.setForeground(new java.awt.Color(255, 255, 255));
         jLAgregarMembresia.setText("Agregar Membresia");
 
+        jBAgregar.setBackground(new java.awt.Color(0, 0, 0));
+        jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jBAgregar.setText("Agregar");
 
+        jBSalir.setBackground(new java.awt.Color(0, 0, 0));
+        jBSalir.setForeground(new java.awt.Color(255, 255, 255));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +104,11 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
             }
         });
 
+        jLCostos.setForeground(new java.awt.Color(255, 255, 255));
         jLCostos.setText("Costos");
+
+        jDCFechaInicio.setBackground(java.awt.Color.darkGray);
+        jDCFechaInicio.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,7 +138,7 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jDCFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 109, Short.MAX_VALUE))
+                                        .addGap(0, 119, Short.MAX_VALUE))
                                     .addComponent(jTFCostos)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBAgregar)
@@ -129,7 +166,7 @@ public class FormularioAgregarMembresia extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLFechaInicio)
                     .addComponent(jDCFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAgregar)
                     .addComponent(jBSalir))
