@@ -6,7 +6,11 @@ package vistas;
 
 import accesoADatos.SocioData;
 import entidades.Socio;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,14 +18,13 @@ import javax.swing.JOptionPane;
  */
 public class FormularioSocio extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FormularioSocio
-     */
+    FondoPanel fondo = new FondoPanel();
     private SocioData socioData = new SocioData();
     ;
     private Socio socio = null;
 
     public FormularioSocio() {
+        this.setContentPane(fondo);
         initComponents();
     }
 
@@ -58,9 +61,17 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
 
         jTextField7.setText("jTextField7");
 
+        jLSocio.setBackground(new java.awt.Color(0, 0, 0));
+        jLSocio.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
+        jLSocio.setForeground(new java.awt.Color(255, 255, 255));
         jLSocio.setText("Formulario Socio");
+        jLSocio.setOpaque(true);
 
+        jLni.setBackground(new java.awt.Color(0, 0, 0));
+        jLni.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLni.setForeground(new java.awt.Color(255, 255, 255));
         jLni.setText("Dni");
+        jLni.setOpaque(true);
 
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +80,7 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
             }
         });
 
+        jBGuardar.setForeground(new java.awt.Color(153, 153, 153));
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +96,7 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
             }
         });
 
+        jBNuevo.setForeground(new java.awt.Color(153, 153, 153));
         jBNuevo.setText("Nuevo");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,21 +104,47 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
             }
         });
 
+        jLNombre.setBackground(new java.awt.Color(0, 0, 0));
+        jLNombre.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLNombre.setForeground(new java.awt.Color(255, 255, 255));
         jLNombre.setText("Nombre");
+        jLNombre.setOpaque(true);
 
+        jLApellido.setBackground(new java.awt.Color(0, 0, 0));
+        jLApellido.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLApellido.setForeground(new java.awt.Color(255, 255, 255));
         jLApellido.setText("Apellido");
+        jLApellido.setOpaque(true);
 
+        jLTelefono.setBackground(new java.awt.Color(0, 0, 0));
+        jLTelefono.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLTelefono.setForeground(new java.awt.Color(255, 255, 255));
         jLTelefono.setText("Telefono");
+        jLTelefono.setOpaque(true);
 
+        jLCorreo.setBackground(new java.awt.Color(0, 0, 0));
+        jLCorreo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLCorreo.setForeground(new java.awt.Color(255, 255, 255));
         jLCorreo.setText("Correo");
+        jLCorreo.setOpaque(true);
 
+        jLEstado.setBackground(new java.awt.Color(0, 0, 0));
+        jLEstado.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLEstado.setForeground(new java.awt.Color(255, 255, 255));
         jLEstado.setText("Estado");
+        jLEstado.setOpaque(true);
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Edad");
+        jLabel1.setOpaque(true);
 
+        jChkBEstado.setForeground(new java.awt.Color(204, 204, 204));
         jChkBEstado.setSelected(true);
         jChkBEstado.setText("Activo");
 
+        jBSalir.setForeground(new java.awt.Color(153, 153, 153));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,13 +211,13 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
                                             .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)))
                         .addComponent(jBBuscar)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLni)
                     .addComponent(jTFDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +246,7 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBGuardar)
                     .addComponent(jBEliminar)
@@ -303,7 +342,18 @@ public class FormularioSocio extends javax.swing.JInternalFrame {
         jTFEdad.setText("");
 
     }
-
+   class FondoPanel extends JPanel {
+        private Image imagen;
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/recursos/gym4.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+            
+            
+        
+    }}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
