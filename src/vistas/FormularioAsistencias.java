@@ -10,10 +10,15 @@ import accesoADatos.SocioData;
 import entidades.Asistencia;
 import entidades.Clase;
 import entidades.Socio;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,10 +26,11 @@ import javax.swing.table.DefaultTableModel;
  * @author elise
  */
 public class FormularioAsistencias extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form Asistencias
      */
+    FondoPanel fondo = new FondoPanel();
+    
     SocioData socioData = new SocioData();
     ClaseData claseData = new ClaseData();
     LocalDate fechaActual = LocalDate.now();
@@ -36,6 +42,7 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
     Clase clase = null;
 
     public FormularioAsistencias() {
+        this.setContentPane(fondo);
         initComponents();
         modelo = new DefaultTableModel();
         jLFecha.setText(fechaActual.toString());
@@ -316,4 +323,17 @@ public class FormularioAsistencias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFdni;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    class FondoPanel extends JPanel {
+        private Image imagen;
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/recursos/fondogym2.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+            
+            
+        
+    }}
+
 }
