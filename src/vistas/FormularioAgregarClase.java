@@ -37,7 +37,8 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
         this.setContentPane(fondo);
         initComponents();
         cargarEntrenadores();
-        horarios();
+        cargarHorarios();
+        borrarHorariosOcupados();
     }
 
     class FondoPanel extends JPanel {
@@ -211,11 +212,14 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void horarios() {
-            List<Clase> clases = claseData.listarClases();
+    public void cargarHorarios(){
             for (int i = 9; i < 20; i++) {
                 jCBHorarios.addItem(LocalTime.of(i, 0));
             }
+    }
+    public void borrarHorariosOcupados() {
+            
+        List<Clase> clases = claseData.listarClases();
             for (Clase clase1 : clases) {
                 jCBHorarios.removeItem(clase1.getHorario());
             }
@@ -237,6 +241,7 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
             if (!jTFNombre.getText().equals("") && !jTFCapacidad.getText().equals("")) {
                 clase = new Clase(nombre, entrenador, horario, capacidad, estado);
                 claseData.agregarClase(clase);
+                limpiar();
             } else {
                 JOptionPane.showMessageDialog(this, "Hay campos sin completar");
             }
@@ -264,6 +269,7 @@ public class FormularioAgregarClase extends javax.swing.JInternalFrame {
         }
 
         private void limpiar() {
+            borrarHorariosOcupados();
             jTFNombre.setText("");
             jTFCapacidad.setText("");
             jCBHorarios.setSelectedIndex(0);
